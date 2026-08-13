@@ -1,7 +1,9 @@
 {
   "name": "blog-api",
   "private": "true",
-  "workspaces": [],
+  "workspaces": [
+    "api"
+  ],
   "devDependencies": {
     "prettier": "^3.9.6"
   }
