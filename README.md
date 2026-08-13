@@ -1,1 +1,1 @@
-# odin-blog-api
+# Odin Blog API
