@@ -8,7 +8,7 @@ export async function register(req, res) {
   const errors = getErrorMessages(req);
 
   if (errors) {
-    return res.json({ errors });
+    return res.status(400).json({ errors });
   }
 
   const data = matchedData(req, { locations: ['body'] });
