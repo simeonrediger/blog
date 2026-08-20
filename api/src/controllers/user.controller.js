@@ -13,6 +13,6 @@ export async function register(req, res) {
 
   const data = matchedData(req, { locations: ['body'] });
   const user = await userService.register(data);
-  const token = await authService.authenticate(user);
+  const token = await authService.createToken(user);
   res.status(201).json({ user, token });
 }
