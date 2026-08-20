@@ -14,5 +14,5 @@ export async function register(req, res) {
   const data = matchedData(req, { locations: ['body'] });
   const user = await userService.register(data);
   const token = await authService.authenticate(user);
-  res.json({ user, token });
+  res.status(201).json({ user, token });
 }
