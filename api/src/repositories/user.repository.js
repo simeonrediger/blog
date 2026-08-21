@@ -22,9 +22,6 @@ export async function findByUsername(username, { includePasswordHash } = {}) {
 }
 
 export async function usernameIsAvailable(username) {
-  const existingUser = await prisma.user.findFirst({
-    where: { username: { equals: username, mode: 'insensitive' } },
-  });
-
+  const existingUser = await findByUsername(username);
   return !existingUser;
 }
