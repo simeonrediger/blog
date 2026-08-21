@@ -6,6 +6,21 @@ export async function create({ username, passwordHash }) {
   return user;
 }
 
+export async function findByUsername(username, { includePasswordHash } = {}) {
+  const user = await prisma.user.findFirst({
+    where: { username: { equals: username, mode: 'insensitive' } },
+  });
+
+  let passwordHash;
+
+  if (user) {
+    ({ passwordHash } = user);
+    delete user.passwordHash;
+  }
+
+  return includePasswordHash ? { user, passwordHash } : user;
+}
+
 export async function usernameIsAvailable(username) {
   const existingUser = await prisma.user.findFirst({
     where: { username: { equals: username, mode: 'insensitive' } },
