@@ -1,7 +1,7 @@
 import { matchedData } from 'express-validator';
 
-import * as userService from '../services/user.service.js';
 import * as authService from '../services/auth.service.js';
+import * as userService from '../services/user.service.js';
 import { getErrorMessages } from '../validators/validation-utils.js';
 
 export async function register(req, res) {
