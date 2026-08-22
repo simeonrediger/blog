@@ -1,7 +1,7 @@
 import { matchedData } from 'express-validator';
 import * as userService from '../services/user.service.js';
 
-export default async function authenticate(req, res, next) {
+export async function validateCredentials(req, res, next) {
   const data = matchedData(req, { locations: ['body'] });
   const user = await userService.validateCredentials(data);
 
