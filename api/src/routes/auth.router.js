@@ -7,7 +7,7 @@ import * as authValidation from '../validators/auth.validation.js';
 const authRouter = Router();
 
 authRouter.post(
-  '/log-in',
+  '/',
   authValidation.validateLogin,
   authenticate,
   authController.logIn,

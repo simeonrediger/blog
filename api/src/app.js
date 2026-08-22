@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 
 app.use('/users', userRouter);
-app.use('/auth', authRouter);
+app.use('/tokens', authRouter);
 
 app.use((req, res) => {
   res.status(404).json({ error: 'Resource not found' });
