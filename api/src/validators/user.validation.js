@@ -27,6 +27,7 @@ export const validateCreate = [
     ),
 
   body('passwordConfirmation').custom(matchesPassword),
+  body('adminPassword'),
 ];
 
 function formatRange(min, max) {
