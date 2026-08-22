@@ -1,6 +1,7 @@
 import express from 'express';
 
 import authRouter from './routes/auth.router.js';
+import postRouter from './routes/post.router.js';
 import userRouter from './routes/user.router.js';
 
 const app = express();
@@ -8,6 +9,7 @@ const app = express();
 app.use(express.json());
 
 app.use('/users', userRouter);
+app.use('/posts', postRouter);
 app.use('/tokens', authRouter);
 
 app.use((req, res) => {
