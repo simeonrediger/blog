@@ -1,4 +1,5 @@
 import { matchedData } from 'express-validator';
+
 import * as userService from '../services/user.service.js';
 
 export async function validateCredentials(req, res, next) {
