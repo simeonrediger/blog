@@ -2,7 +2,7 @@ import { matchedData } from 'express-validator';
 
 import * as authorizationService from '../services/authorization.service.js';
 
-export async function requireAdminPassword(req, res, next) {
+export function requireAdminPassword(req, res, next) {
   const { adminPassword } = matchedData(req, { locations: ['body'] });
   const passwordMatches =
     authorizationService.matchesAdminPassword(adminPassword);
