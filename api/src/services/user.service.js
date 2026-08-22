@@ -8,15 +8,15 @@ export async function register({ username, password }) {
 }
 
 export async function validateCredentials({ username, password }) {
-  const { user, passwordHash } = await userRepository.findByUsername(username, {
-    includePasswordHash: true,
+  const user = await userRepository.findByUsername(username, {
+    omitPasswordHash: false,
   });
 
   if (!user) {
     return null;
   }
 
-  const passwordMatches = await bcrypt.compare(password, passwordHash);
+  const passwordMatches = await bcrypt.compare(password, user.passwordHash);
 
   if (!passwordMatches) {
     return null;

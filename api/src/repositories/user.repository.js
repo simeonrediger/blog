@@ -1,24 +1,17 @@
 import prisma from '../db/prisma.js';
 
 export async function create({ username, passwordHash }) {
-  const user = await prisma.user.create({ data: { username, passwordHash } });
-  delete user.passwordHash;
-  return user;
+  return await prisma.user.create({ data: { username, passwordHash } });
 }
 
-export async function findByUsername(username, { includePasswordHash } = {}) {
-  const user = await prisma.user.findFirst({
+export async function findByUsername(
+  username,
+  { omitPasswordHash = true } = {},
+) {
+  return await prisma.user.findFirst({
     where: { username: { equals: username, mode: 'insensitive' } },
+    omit: { passwordHash: omitPasswordHash },
   });
-
-  let passwordHash;
-
-  if (user) {
-    ({ passwordHash } = user);
-    delete user.passwordHash;
-  }
-
-  return includePasswordHash ? { user, passwordHash } : user;
 }
 
 export async function usernameIsAvailable(username) {
@@ -27,7 +20,5 @@ export async function usernameIsAvailable(username) {
 }
 
 export async function findById(id) {
-  const user = await prisma.user.findUnique({ where: { id } });
-  delete user.passwordHash;
-  return user;
+  return await prisma.user.findUnique({ where: { id } });
 }
