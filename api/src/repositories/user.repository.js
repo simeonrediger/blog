@@ -25,3 +25,9 @@ export async function usernameIsAvailable(username) {
   const existingUser = await findByUsername(username);
   return !existingUser;
 }
+
+export async function findById(id) {
+  const user = await prisma.user.findUnique({ where: { id } });
+  delete user.passwordHash;
+  return user;
+}
