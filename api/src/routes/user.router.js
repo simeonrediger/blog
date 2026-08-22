@@ -5,6 +5,6 @@ import * as userController from '../controllers/user.controller.js';
 
 const userRouter = Router();
 
-userRouter.post('/', userValidation.validateSignup, userController.register);
+userRouter.post('/', userValidation.validateCreate, userController.register);
 
 export default userRouter;

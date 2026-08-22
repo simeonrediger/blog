@@ -7,7 +7,7 @@ const requirements = {
   password: { minLength: 12 },
 };
 
-export const validateSignup = [
+export const validateCreate = [
   body('username')
     .trim()
     .isLength({
