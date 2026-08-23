@@ -8,7 +8,7 @@ export function requireAdminPassword(req, res, next) {
     authorizationService.matchesAdminPassword(adminPassword);
 
   if (!passwordMatches) {
-    return res.status(401).json({ error: 'Incorrect admin password' });
+    return res.status(403).json({ error: 'Forbidden' });
   }
 
   req.role = 'admin';
