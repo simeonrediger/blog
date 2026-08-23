@@ -4,6 +4,14 @@ export function handleInvalidJson(error, req, res, next) {
   }
 }
 
+export function handleUnauthenticated(req, res) {
+  res.status(401).json({ error: 'Authentication required' });
+}
+
+export function handleForbidden(req, res) {
+  res.status(403).json({ error: 'Forbidden' });
+}
+
 export function handleNotFound(req, res) {
   res.status(404).json({ error: 'Resource not found' });
 }

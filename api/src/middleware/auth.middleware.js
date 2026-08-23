@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { matchedData } from 'express-validator';
 
+import * as errorController from '../controllers/error.controller.js';
 import * as userRepository from '../repositories/user.repository.js';
 import * as userService from '../services/user.service.js';
 
@@ -39,17 +40,17 @@ export async function authenticate(req, res, next) {
   try {
     ({ sub: userId, role } = jwt.verify(token, process.env.JWT_SECRET));
   } catch {
-    return res.status(401).json({ error: 'Authentication required' });
+    return errorController.handleUnauthenticated(req, res);
   }
 
   if (typeof userId !== 'number') {
-    return res.status(401).json({ error: 'Authentication required' });
+    return errorController.handleUnauthenticated(req, res);
   }
 
   const user = await userRepository.findById(userId);
 
   if (!user) {
-    return res.status(401).json({ error: 'Authentication required' });
+    return errorController.handleUnauthenticated(req, res);
   }
 
   user.role = role;

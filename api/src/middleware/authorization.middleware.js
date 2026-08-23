@@ -1,6 +1,7 @@
 import { matchedData } from 'express-validator';
 
 import * as authorizationService from '../services/authorization.service.js';
+import * as errorController from '../controllers/error.controller.js';
 
 export function requireAdminPassword(req, res, next) {
   const { adminPassword } = matchedData(req, { locations: ['body'] });
@@ -8,7 +9,7 @@ export function requireAdminPassword(req, res, next) {
     authorizationService.matchesAdminPassword(adminPassword);
 
   if (!passwordMatches) {
-    return res.status(403).json({ error: 'Forbidden' });
+    return errorController.handleForbidden(req, res);
   }
 
   req.role = 'admin';
@@ -18,7 +19,7 @@ export function requireAdminPassword(req, res, next) {
 export function requireRole(role) {
   return (req, res, next) => {
     if (req.user.role !== role) {
-      return res.status(403).json({ error: 'Forbidden' });
+      return errorController.handleForbidden(req, res);
     }
 
     next();
@@ -28,7 +29,7 @@ export function requireRole(role) {
 export function requireOwner(getOwnerId) {
   return (req, res, next) => {
     if (req.user.id !== getOwnerId(req)) {
-      return res.status(403).json({ error: 'Forbidden' });
+      return errorController.handleForbidden(req, res);
     }
 
     next();
