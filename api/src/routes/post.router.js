@@ -8,6 +8,7 @@ import * as resource from '../middleware/resource.middleware.js';
 
 const postRouter = Router();
 
+postRouter.get('/', postController.getAll);
 postRouter.use(auth.authenticate, authorization.requireRole('admin'));
 postRouter.post('/', postValidation.validateCreate, postController.create);
 
