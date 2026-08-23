@@ -27,5 +27,5 @@ export async function update(req, res) {
   const data = matchedData(req, { locations: ['body'] });
   data.id = id;
   const post = await postRepository.update(data);
-  res.status(201).json({ post });
+  res.status(200).json({ post });
 }
