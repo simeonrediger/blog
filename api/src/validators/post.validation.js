@@ -5,7 +5,7 @@ const requirements = {
   content: { maxLength: 20_000 },
 };
 
-export const validateCreatePost = [validateTitle(), validateContent()];
+export const validateCreate = [validateTitle(), validateContent()];
 
 function validateTitle() {
   return body('title')
