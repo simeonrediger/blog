@@ -1,23 +1,16 @@
 import { param, body } from 'express-validator';
 
-import * as postRepository from '../repositories/post.repository.js';
-
 const requirements = {
   title: { maxLength: 60 },
   content: { maxLength: 20_000 },
 };
 
-export const validateCreate = [validateTitle(), validateContent()];
-export const validateExists = [validateId()];
-export const validateUpdate = [validateTitle(), validateContent()];
-
-function validateId(key = 'id') {
-  return param(key)
-    .isInt()
-    .withMessage('Post ID must be an integer')
-    .toInt()
-    .custom(idExists);
+export function validateId(key = 'id') {
+  return param(key).isInt().withMessage('Post ID must be an integer').toInt();
 }
+
+export const validateCreate = [validateTitle(), validateContent()];
+export const validateUpdate = [validateTitle(), validateContent()];
 
 function validateTitle() {
   return body('title')
@@ -39,15 +32,4 @@ function validateContent() {
     .withMessage(
       `Content must not exceed ${requirements.content.maxLength} characters`,
     );
-}
-
-async function idExists(id, { req }) {
-  const post = await postRepository.findById(id);
-
-  if (!post) {
-    throw new Error(`Post ID '${id}' does not exist`);
-  }
-
-  req.post = post;
-  return true;
 }
