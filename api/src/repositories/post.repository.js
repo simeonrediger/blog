@@ -7,10 +7,7 @@ export async function findById(id) {
 export async function create({ title, content, authorId }) {
   return await prisma.post.create({
     data: { title, content, authorId },
-    include: {
-      authorId: false,
-      author: { include: { passwordHash: false } },
-    },
+    include: { authorId: false, author: true },
   });
 }
 
