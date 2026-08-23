@@ -17,7 +17,17 @@ export async function validateCredentials(req, res, next) {
 }
 
 export async function authenticate(req, res, next) {
-  const authorizationHeaderParts = req.headers.authorization?.split(' ') ?? [];
+  const authorizationHeader = req.headers.authorization;
+
+  if (!authorizationHeader) {
+    return res.status(400).json({ error: 'Missing Authorization header' });
+  }
+
+  if (typeof authorizationHeader !== 'string') {
+    return res.status(400).json({ error: 'Malformed Authorization header' });
+  }
+
+  const authorizationHeaderParts = authorizationHeader.split(' ');
   const [scheme, token] = authorizationHeaderParts;
 
   if (authorizationHeaderParts.length !== 2 || scheme !== 'Bearer' || !token) {
