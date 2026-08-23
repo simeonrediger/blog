@@ -7,12 +7,7 @@ import * as postValidation from '../validators/post.validation.js';
 
 const postRouter = Router();
 
-postRouter.post(
-  '/',
-  auth.authenticate,
-  authorization.requireRole('admin'),
-  postValidation.validateCreatePost,
-  postController.create,
-);
+postRouter.use(auth.authenticate, authorization.requireRole('admin'));
+postRouter.post('/', postValidation.validateCreatePost, postController.create);
 
 export default postRouter;
