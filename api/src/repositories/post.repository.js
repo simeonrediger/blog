@@ -17,3 +17,7 @@ export async function findById(id) {
 export async function update({ id, title, content }) {
   return await prisma.post.update({ where: { id }, data: { title, content } });
 }
+
+export async function destroy({ id }) {
+  return await prisma.post.delete({ where: { id } });
+}
