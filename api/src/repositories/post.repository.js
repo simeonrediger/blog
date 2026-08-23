@@ -9,3 +9,11 @@ export async function create({ title, content, authorId }) {
     },
   });
 }
+
+export async function findById(id) {
+  return await prisma.post.findUnique({ where: { id } });
+}
+
+export async function update({ id, title, content }) {
+  return await prisma.post.update({ where: { id }, data: { title, content } });
+}

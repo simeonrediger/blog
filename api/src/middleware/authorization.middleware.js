@@ -24,3 +24,13 @@ export function requireRole(role) {
     next();
   };
 }
+
+export function requireOwner(getOwnerId) {
+  return (req, res, next) => {
+    if (req.user.id !== getOwnerId(req)) {
+      return res.status(403).json({ error: 'Forbidden' });
+    }
+
+    next();
+  };
+}

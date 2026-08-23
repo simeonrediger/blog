@@ -10,4 +10,12 @@ const postRouter = Router();
 postRouter.use(auth.authenticate, authorization.requireRole('admin'));
 postRouter.post('/', postValidation.validateCreate, postController.create);
 
+postRouter.put(
+  '/:id',
+  postValidation.validateExists,
+  postValidation.validateUpdate,
+  authorization.requireOwner(req => req.post.authorId),
+  postController.update,
+);
+
 export default postRouter;

@@ -15,3 +15,17 @@ export async function create(req, res) {
   const post = await postRepository.create(data);
   res.status(201).json({ post });
 }
+
+export async function update(req, res) {
+  const errors = getErrorMessages(req);
+
+  if (errors) {
+    return res.status(400).json({ errors });
+  }
+
+  const { id } = matchedData(req, { locations: ['params'] });
+  const data = matchedData(req, { locations: ['body'] });
+  data.id = id;
+  const post = await postRepository.update(data);
+  res.status(201).json({ post });
+}
