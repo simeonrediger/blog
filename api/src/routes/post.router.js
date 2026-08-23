@@ -13,8 +13,8 @@ postRouter.post('/', postValidation.validateCreate, postController.create);
 postRouter.put(
   '/:id',
   postValidation.validateExists,
-  postValidation.validateUpdate,
   authorization.requireOwner(req => req.post.authorId),
+  postValidation.validateUpdate,
   postController.update,
 );
 
