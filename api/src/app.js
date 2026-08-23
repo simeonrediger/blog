@@ -7,6 +7,11 @@ import userRouter from './routes/user.router.js';
 const app = express();
 
 app.use(express.json());
+app.use((error, req, res, next) => {
+  if (error.type === 'entity.parse.failed') {
+    res.status(400).json({ error: 'Invalid JSON' });
+  }
+});
 
 app.use('/users', userRouter);
 app.use('/posts', postRouter);
