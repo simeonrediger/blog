@@ -14,3 +14,7 @@ export async function update({ id, authorName, content }) {
     data: { authorName, content },
   });
 }
+
+export async function destroy({ id }) {
+  return await prisma.comment.delete({ where: { id } });
+}

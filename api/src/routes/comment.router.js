@@ -16,12 +16,10 @@ commentRouter.post(
 
 commentRouter.use(auth.authenticate, authorization.requireRole('admin'));
 
-commentRouter.put(
-  '/:id',
-  commentValidation.validateId,
-  resource.requireCommentExists(),
-  commentValidation.validateUpdate,
-  commentController.update,
-);
+commentRouter
+  .route('/:id')
+  .all(commentValidation.validateId, resource.requireCommentExists())
+  .put(commentValidation.validateUpdate, commentController.update)
+  .delete(commentController.destroy);
 
 export default commentRouter;

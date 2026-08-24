@@ -30,3 +30,15 @@ export async function update(req, res) {
   const comment = await commentRepository.update(data);
   res.status(200).json({ comment });
 }
+
+export async function destroy(req, res) {
+  const errors = getErrorMessages(req);
+
+  if (errors) {
+    return res.status(400).json({ errors });
+  }
+
+  const data = matchedData(req, { locations: ['params'] });
+  await commentRepository.destroy(data);
+  res.sendStatus(204);
+}
