@@ -28,9 +28,15 @@ export async function create({ title, content, published, authorId }) {
 }
 
 export async function updateById(id, { title, content, published }) {
+  let editedAt;
+
+  if (title !== undefined || content !== undefined) {
+    editedAt = new Date();
+  }
+
   return await prisma.post.update({
     where: { id },
-    data: { title, content, published },
+    data: { title, content, published, editedAt },
   });
 }
 

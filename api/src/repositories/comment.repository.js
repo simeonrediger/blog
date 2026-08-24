@@ -9,9 +9,15 @@ export async function create({ authorName, content, postId }) {
 }
 
 export async function updateById(id, { authorName, content }) {
+  let editedAt;
+
+  if (authorName !== undefined || content !== undefined) {
+    editedAt = new Date();
+  }
+
   return await prisma.comment.update({
     where: { id },
-    data: { authorName, content },
+    data: { authorName, content, editedAt },
   });
 }
 
