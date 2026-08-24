@@ -4,7 +4,13 @@ import * as postRepository from '../repositories/post.repository.js';
 import { getErrorMessages } from '../validators/validation-utils.js';
 
 export async function getAll(req, res) {
-  const posts = await postRepository.findAll();
+  const isAdmin = req.user?.role === 'admin';
+  console.log(req.user);
+
+  const posts = await (isAdmin
+    ? postRepository.findAll()
+    : postRepository.findAllPublished());
+
   res.json({ posts });
 }
 

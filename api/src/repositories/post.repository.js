@@ -13,6 +13,13 @@ export async function findAll() {
   });
 }
 
+export async function findAllPublished() {
+  return await prisma.post.findMany({
+    where: { published: true },
+    include: { authorId: false, author: true },
+  });
+}
+
 export async function create({ title, content, published, authorId }) {
   return await prisma.post.create({
     data: { title, content, published, authorId },
