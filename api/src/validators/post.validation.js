@@ -15,13 +15,13 @@ export function validateId(idParamName = 'id') {
 export const validateCreate = [
   validateTitle(),
   validateContent(),
-  validatePublished(),
+  validatePublished().optional(),
 ];
 
 export const validateUpdate = [
   validateTitle(),
   validateContent(),
-  validatePublished(),
+  validatePublished().optional(),
 ];
 
 function validateTitle() {
@@ -48,7 +48,6 @@ function validateContent() {
 
 function validatePublished() {
   return body('published')
-    .optional()
     .isBoolean()
     .withMessage('Published must be a boolean');
 }
