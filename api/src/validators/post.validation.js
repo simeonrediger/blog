@@ -12,8 +12,17 @@ export function validateId(idParamName = 'id') {
     .toInt();
 }
 
-export const validateCreate = [validateTitle(), validateContent()];
-export const validateUpdate = [validateTitle(), validateContent()];
+export const validateCreate = [
+  validateTitle(),
+  validateContent(),
+  validatePublished(),
+];
+
+export const validateUpdate = [
+  validateTitle(),
+  validateContent(),
+  validatePublished(),
+];
 
 function validateTitle() {
   return body('title')
@@ -35,4 +44,11 @@ function validateContent() {
     .withMessage(
       `Content must not exceed ${requirements.content.maxLength} characters`,
     );
+}
+
+function validatePublished() {
+  return body('published')
+    .optional()
+    .isBoolean()
+    .withMessage('Published must be a boolean');
 }

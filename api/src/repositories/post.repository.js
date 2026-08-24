@@ -13,15 +13,18 @@ export async function findAll() {
   });
 }
 
-export async function create({ title, content, authorId }) {
+export async function create({ title, content, published, authorId }) {
   return await prisma.post.create({
-    data: { title, content, authorId },
+    data: { title, content, published, authorId },
     include: { authorId: false, author: true },
   });
 }
 
-export async function updateById(id, { title, content }) {
-  return await prisma.post.update({ where: { id }, data: { title, content } });
+export async function updateById(id, { title, content, published }) {
+  return await prisma.post.update({
+    where: { id },
+    data: { title, content, published },
+  });
 }
 
 export async function deleteById(id) {
