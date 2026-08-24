@@ -1,7 +1,10 @@
 import prisma from '../db/prisma.js';
 
 export async function findById(id) {
-  return await prisma.post.findUnique({ where: { id } });
+  return await prisma.post.findUnique({
+    where: { id },
+    include: { comments: true },
+  });
 }
 
 export async function findAll() {
