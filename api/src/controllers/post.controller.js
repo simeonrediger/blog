@@ -5,7 +5,7 @@ import { getErrorMessages } from '../validators/validation-utils.js';
 
 export async function getAll(req, res) {
   const posts = await postRepository.findAll();
-  res.json(posts);
+  res.json({ posts });
 }
 
 export async function create(req, res) {
