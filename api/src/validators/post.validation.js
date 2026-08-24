@@ -5,8 +5,11 @@ const requirements = {
   content: { maxLength: 20_000 },
 };
 
-export function validateId(key = 'id') {
-  return param(key).isInt().withMessage('Post ID must be an integer').toInt();
+export function validateId(idParamName = 'id') {
+  return param(idParamName)
+    .isInt()
+    .withMessage('Post ID must be an integer')
+    .toInt();
 }
 
 export const validateCreate = [validateTitle(), validateContent()];
