@@ -43,7 +43,7 @@ export async function authenticate(req, res, next) {
     return errorController.handleUnauthenticated(req, res);
   }
 
-  if (typeof userId !== 'number') {
+  if (!Number.isInteger(userId)) {
     return errorController.handleUnauthenticated(req, res);
   }
 
