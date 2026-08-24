@@ -8,6 +8,12 @@ export async function getAll(req, res) {
   res.json({ posts });
 }
 
+export async function getById(req, res) {
+  const { id } = matchedData(req, { locations: ['params'] });
+  const post = await postRepository.findById(id);
+  res.json({ post });
+}
+
 export async function create(req, res) {
   const errors = getErrorMessages(req);
 

@@ -11,6 +11,13 @@ const postRouter = Router();
 
 postRouter.get('/', postController.getAll);
 
+postRouter.get(
+  '/:id',
+  postValidation.validateId(),
+  resource.requirePostExists(),
+  postController.getById,
+);
+
 postRouter.use(
   '/:postId/comments',
   postValidation.validateId('postId'),
