@@ -29,6 +29,8 @@ export const validateUpdate = [
 
 function validateTitle() {
   return body('title')
+    .isString()
+    .withMessage('Title must be a string')
     .trim()
     .notEmpty()
     .withMessage('Title must not be empty')
@@ -40,6 +42,8 @@ function validateTitle() {
 
 function validateContent() {
   return body('content')
+    .isString()
+    .withMessage('Content must be a string')
     .trim()
     .notEmpty()
     .withMessage('Content must not be empty')

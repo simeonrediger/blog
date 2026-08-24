@@ -21,6 +21,8 @@ export const validateId = param('id')
 
 function validateAuthorName() {
   return body('authorName')
+    .isString()
+    .withMessage('Author name must be a string')
     .trim()
     .notEmpty()
     .withMessage('Author name must not be empty')
@@ -33,6 +35,8 @@ function validateAuthorName() {
 
 function validateContent() {
   return body('content')
+    .isString()
+    .withMessage('Content must be a string')
     .trim()
     .notEmpty()
     .withMessage('Content must not be empty')
