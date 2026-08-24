@@ -16,3 +16,17 @@ export async function create(req, res) {
   const comment = await commentRepository.create(data);
   res.status(201).json({ comment });
 }
+
+export async function update(req, res) {
+  const errors = getErrorMessages(req);
+
+  if (errors) {
+    return res.status(400).json({ errors });
+  }
+
+  const { id } = matchedData(req, { locations: ['params'] });
+  const data = matchedData(req, { locations: ['body'] });
+  data.id = id;
+  const comment = await commentRepository.update(data);
+  res.status(200).json({ comment });
+}

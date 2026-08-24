@@ -1,4 +1,4 @@
-import { body } from 'express-validator';
+import { param, body } from 'express-validator';
 
 const requirements = {
   authorName: { maxLength: 20 },
@@ -6,6 +6,12 @@ const requirements = {
 };
 
 export const validateCreate = [validateAuthorName(), validateContent()];
+export const validateUpdate = [validateAuthorName(), validateContent()];
+
+export const validateId = param('id')
+  .isInt()
+  .withMessage('Post ID must be an integer')
+  .toInt();
 
 function validateAuthorName() {
   return body('authorName')

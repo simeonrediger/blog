@@ -1,10 +1,19 @@
 import { matchedData } from 'express-validator';
 
+import * as commentRepository from '../repositories/comment.repository.js';
 import * as errorController from '../controllers/error.controller.js';
 import * as postRepository from '../repositories/post.repository.js';
 
 export function requirePostExists(idParamName) {
   return requireResourceExists('post', postRepository.findById, idParamName);
+}
+
+export function requireCommentExists(idParamName) {
+  return requireResourceExists(
+    'comment',
+    commentRepository.findById,
+    idParamName,
+  );
 }
 
 function requireResourceExists(
