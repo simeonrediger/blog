@@ -2,7 +2,7 @@
   "name": "blog-api",
   "private": "true",
   "workspaces": [
-    "api"
+    "apps/*"
   ],
   "allowScripts": {
     "prisma": false,
