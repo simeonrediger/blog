@@ -1,12 +1,18 @@
 import { param, body } from 'express-validator';
 
+import { validateAtLeastOneOf } from './common.validation.js';
+
 const requirements = {
   authorName: { maxLength: 20 },
   content: { maxLength: 1_000 },
 };
 
 export const validateCreate = [validateAuthorName(), validateContent()];
-export const validateUpdate = [validateAuthorName(), validateContent()];
+export const validateUpdate = [
+  validateAuthorName().optional(),
+  validateContent().optional(),
+  validateAtLeastOneOf(['authorName', 'content'], 'body'),
+];
 
 export const validateId = param('id')
   .isInt()

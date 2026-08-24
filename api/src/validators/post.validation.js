@@ -1,5 +1,7 @@
 import { param, body } from 'express-validator';
 
+import { validateAtLeastOneOf } from './common.validation.js';
+
 const requirements = {
   title: { maxLength: 60 },
   content: { maxLength: 20_000 },
@@ -19,9 +21,10 @@ export const validateCreate = [
 ];
 
 export const validateUpdate = [
-  validateTitle(),
-  validateContent(),
+  validateTitle().optional(),
+  validateContent().optional(),
   validatePublished().optional(),
+  validateAtLeastOneOf(['title', 'content', 'published'], 'body'),
 ];
 
 function validateTitle() {
