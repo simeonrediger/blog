@@ -20,10 +20,10 @@ export async function create({ title, content, authorId }) {
   });
 }
 
-export async function update({ id, title, content }) {
+export async function updateById(id, { title, content }) {
   return await prisma.post.update({ where: { id }, data: { title, content } });
 }
 
-export async function destroy({ id }) {
+export async function deleteById(id) {
   return await prisma.post.delete({ where: { id } });
 }

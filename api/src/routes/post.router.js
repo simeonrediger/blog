@@ -35,7 +35,7 @@ postRouter
     resource.requirePostExists(),
     authorization.requireOwner(req => req.post.authorId),
   )
-  .put(postValidation.validateUpdate, postController.update)
-  .delete(postController.destroy);
+  .put(postValidation.validateUpdate, postController.updateById)
+  .delete(postController.deleteById);
 
 export default postRouter;

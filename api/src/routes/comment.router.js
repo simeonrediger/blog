@@ -19,7 +19,7 @@ commentRouter.use(auth.authenticate, authorization.requireRole('admin'));
 commentRouter
   .route('/:id')
   .all(commentValidation.validateId, resource.requireCommentExists())
-  .put(commentValidation.validateUpdate, commentController.update)
-  .delete(commentController.destroy);
+  .put(commentValidation.validateUpdate, commentController.updateById)
+  .delete(commentController.deleteById);
 
 export default commentRouter;

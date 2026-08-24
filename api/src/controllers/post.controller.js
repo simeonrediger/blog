@@ -27,7 +27,7 @@ export async function create(req, res) {
   res.status(201).json({ post });
 }
 
-export async function update(req, res) {
+export async function updateById(req, res) {
   const errors = getErrorMessages(req);
 
   if (errors) {
@@ -36,19 +36,18 @@ export async function update(req, res) {
 
   const { id } = matchedData(req, { locations: ['params'] });
   const data = matchedData(req, { locations: ['body'] });
-  data.id = id;
-  const post = await postRepository.update(data);
+  const post = await postRepository.updateById(id, data);
   res.status(200).json({ post });
 }
 
-export async function destroy(req, res) {
+export async function deleteById(req, res) {
   const errors = getErrorMessages(req);
 
   if (errors) {
     return res.status(400).json({ errors });
   }
 
-  const data = matchedData(req, { locations: ['params'] });
-  await postRepository.destroy(data);
+  const { id } = matchedData(req, { locations: ['params'] });
+  await postRepository.deleteById(id);
   res.sendStatus(204);
 }

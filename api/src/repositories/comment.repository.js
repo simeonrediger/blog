@@ -8,13 +8,13 @@ export async function create({ authorName, content, postId }) {
   return await prisma.comment.create({ data: { authorName, content, postId } });
 }
 
-export async function update({ id, authorName, content }) {
+export async function updateById(id, { authorName, content }) {
   return await prisma.comment.update({
     where: { id },
     data: { authorName, content },
   });
 }
 
-export async function destroy({ id }) {
+export async function deleteById(id) {
   return await prisma.comment.delete({ where: { id } });
 }
