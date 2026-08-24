@@ -14,7 +14,7 @@ commentRouter.post(
   commentController.create,
 );
 
-commentRouter.use(auth.authenticate, authorization.requireRole('admin'));
+commentRouter.use(auth.requireAuth, authorization.requireRole('admin'));
 
 commentRouter
   .route('/:id')

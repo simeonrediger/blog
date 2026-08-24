@@ -25,7 +25,7 @@ postRouter.use(
   commentRouter,
 );
 
-postRouter.use(auth.authenticate, authorization.requireRole('admin'));
+postRouter.use(auth.requireAuth, authorization.requireRole('admin'));
 postRouter.post('/', postValidation.validateCreate, postController.create);
 
 postRouter

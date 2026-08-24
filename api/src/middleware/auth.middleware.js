@@ -21,18 +21,21 @@ export async function authenticate(req, res, next) {
   const authorizationHeader = req.headers.authorization;
 
   if (!authorizationHeader) {
-    return res.status(400).json({ error: 'Missing Authorization header' });
+    req.authError = { status: 400, message: 'Missing Authorization header' };
+    return next();
   }
 
   if (typeof authorizationHeader !== 'string') {
-    return res.status(400).json({ error: 'Malformed Authorization header' });
+    req.authError = { status: 400, message: 'Malformed Authorization header' };
+    return next();
   }
 
   const authorizationHeaderParts = authorizationHeader.split(' ');
   const [scheme, token] = authorizationHeaderParts;
 
   if (authorizationHeaderParts.length !== 2 || scheme !== 'Bearer' || !token) {
-    return res.status(400).json({ error: 'Malformed Authorization header' });
+    req.authError = { status: 400, message: 'Malformed Authorization header' };
+    return next();
   }
 
   let userId, role;
@@ -40,20 +43,34 @@ export async function authenticate(req, res, next) {
   try {
     ({ sub: userId, role } = jwt.verify(token, process.env.JWT_SECRET));
   } catch {
-    return errorController.handleUnauthenticated(req, res);
+    return next();
   }
 
   if (!Number.isInteger(userId)) {
-    return errorController.handleUnauthenticated(req, res);
+    return next();
   }
 
   const user = await userRepository.findById(userId);
 
   if (!user) {
-    return errorController.handleUnauthenticated(req, res);
+    return next();
   }
 
   user.role = role;
   req.user = user;
+  next();
+}
+
+export async function requireAuth(req, res, next) {
+  if (!req.user) {
+    if (req.authError?.status && req.authError.status !== 401) {
+      res.status(req.authError.status).json({ error: req.authError.message });
+    } else {
+      errorController.handleUnauthenticated(req, res);
+    }
+
+    return;
+  }
+
   next();
 }
