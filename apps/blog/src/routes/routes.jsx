@@ -1,11 +1,11 @@
 import App from '../App/App.jsx';
-import Home from './Home/Home.jsx';
+import Posts from './Posts/Posts.jsx';
 
 const routes = [
   {
     path: '/',
     element: <App />,
-    children: [{ index: true, element: <Home /> }],
+    children: [{ index: true, element: <Posts /> }],
   },
 ];
 
