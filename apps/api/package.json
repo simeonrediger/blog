@@ -10,9 +10,6 @@
     "start": "node --watch --env-file-if-exists=.env src/server.js",
     "db:ui": "prisma studio --config prisma.config.js"
   },
-  "devDependencies": {
-    "prisma": "^7.9.1"
-  },
   "dependencies": {
     "@prisma/adapter-pg": "^7.9.1",
     "@prisma/client": "^7.9.1",
@@ -22,5 +19,8 @@
     "express-validator": "^7.3.2",
     "jsonwebtoken": "^9.0.3",
     "pg": "^8.23.0"
+  },
+  "devDependencies": {
+    "prisma": "^7.9.1"
   }
 }
