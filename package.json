@@ -1,6 +1,6 @@
 {
   "name": "blog-api",
-  "private": "true",
+  "private": true,
   "workspaces": [
     "apps/*"
   ],
