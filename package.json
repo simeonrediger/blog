@@ -4,6 +4,10 @@
   "workspaces": [
     "apps/*"
   ],
+  "allowScripts": {
+    "prisma": true,
+    "@prisma/engines": true
+  },
   "devDependencies": {
     "prettier": "^3.9.6"
   }
