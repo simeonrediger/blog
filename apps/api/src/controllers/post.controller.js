@@ -5,7 +5,6 @@ import { getErrorMessages } from '../validators/validation-utils.js';
 
 export async function getAll(req, res) {
   const isAdmin = req.user?.role === 'admin';
-  console.log(req.user);
 
   const posts = await (isAdmin
     ? postRepository.findAll()
