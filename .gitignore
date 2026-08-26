@@ -9,5 +9,6 @@ node_modules/
 .env.*
 !.env.example
 
-# Prisma
+# Build
 **/generated/prisma
+dist/
