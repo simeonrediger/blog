@@ -1,0 +1,9 @@
+.listItem {
+  background-color: var(--color-post-list-item);
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.createdAt {
+  font-family: monospace;
+}

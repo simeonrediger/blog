@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import api from '../../api-client/client.js';
 
+import styles from './Posts.module.css';
 import Post from './Post/Post.jsx';
 
 export default function Posts() {
@@ -32,7 +33,7 @@ export default function Posts() {
   return (
     <div>
       <h2>Posts</h2>
-      <ul>
+      <ul className={styles.list}>
         {posts.map(post => (
           <li key={post.id}>
             <Post {...post} />
