@@ -1,6 +1,6 @@
-import styles from './Post.module.css';
+import styles from './PostListItem.module.css';
 
-export default function Post({ title, createdAt, author }) {
+export default function PostListItem({ title, createdAt, author }) {
   return (
     <article className={styles.listItem}>
       <h3>{title}</h3>

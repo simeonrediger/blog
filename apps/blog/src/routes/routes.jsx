@@ -1,11 +1,11 @@
 import App from '../App/App.jsx';
-import Posts from './Posts/Posts.jsx';
+import PostList from './PostList/PostList.jsx';
 
 const routes = [
   {
     path: '/',
     element: <App />,
-    children: [{ index: true, element: <Posts /> }],
+    children: [{ index: true, element: <PostList /> }],
   },
 ];
 

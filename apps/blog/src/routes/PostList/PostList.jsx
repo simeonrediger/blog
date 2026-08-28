@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 
 import api from '../../api-client/client.js';
 
-import styles from './Posts.module.css';
-import Post from './Post/Post.jsx';
+import styles from './PostList.module.css';
+import PostListItem from './PostListItem/PostListItem.jsx';
 
-export default function Posts() {
+export default function PostList() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export default function Posts() {
       <ul className={styles.list}>
         {posts.map(post => (
           <li key={post.id}>
-            <Post {...post} />
+            <PostListItem {...post} />
           </li>
         ))}
       </ul>
