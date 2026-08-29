@@ -1,5 +1,5 @@
 const posts = {
-  getAll: ['/posts'],
+  getAll: { path: '/posts' },
 };
 
 export default posts;

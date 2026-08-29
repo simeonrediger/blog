@@ -9,7 +9,7 @@ extend(api, 'posts', posts);
 function extend(api, resourceName, resourceApi) {
   api[resourceName] = {};
 
-  for (const [methodName, [path, options]] of Object.entries(resourceApi)) {
+  for (const [methodName, { path, options }] of Object.entries(resourceApi)) {
     api[resourceName][methodName] = fetchApi(path, options);
   }
 }
