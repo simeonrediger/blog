@@ -8,7 +8,7 @@
   "scripts": {
     "build": "prisma generate",
     "start": "node --watch --env-file-if-exists=.env src/server.js",
-    "db:ui": "prisma studio --config prisma.config.js"
+    "db:ui": "prisma studio"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.10.0",
