@@ -1,6 +1,6 @@
 const posts = {
   getAll: { path: '/posts' },
-  getById: { path: id => `/posts/${id}` },
+  getById: { path: ({ id }) => `/posts/${id}` },
 };
 
 export default posts;

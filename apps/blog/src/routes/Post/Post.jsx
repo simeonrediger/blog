@@ -4,8 +4,8 @@ import api from '../../api-client/client.js';
 import useFetch from '../../hooks/useFetch.js';
 
 export default function Post() {
-  const { id } = useParams();
-  const { post } = useFetch(api.posts.getById, id);
+  const params = useParams();
+  const { post } = useFetch(api.posts.getById, params);
 
   return <div>{post?.title}</div>;
 }

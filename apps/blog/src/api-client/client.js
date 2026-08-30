@@ -16,7 +16,7 @@ function extend(api, resourceName, resourceApi) {
 
 function createApiMethod(path, options) {
   return typeof path === 'function'
-    ? param => fetch(`${API_ORIGIN}${path(param)}`, options)
+    ? params => fetch(`${API_ORIGIN}${path(params)}`, options)
     : () => fetch(`${API_ORIGIN}${path}`, options);
 }
 
