@@ -18,11 +18,12 @@ export default function Post() {
     return <PageLoader />;
   }
 
-  const { title, content } = data.post;
+  const { title, content, author } = data.post;
 
   return (
     <section>
       <h2>{title}</h2>
+      <p>by {author.username}</p>
       <p>{content}</p>
     </section>
   );
