@@ -31,5 +31,6 @@ html {
   --color-modal-border: var(--dark-gray-8);
   --color-modal-backdrop: var(--transparent-black);
 
+  --color-loader: var(--pale-light-blue);
   --color-post-list-item: var(--dark-gray-11);
 }

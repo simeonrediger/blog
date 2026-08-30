@@ -4,6 +4,7 @@ import api from '../../api-client/client.js';
 import useFetch from '../../hooks/useFetch.js';
 
 import ErrorPage from '../ErrorPage/ErrorPage.jsx';
+import PageLoader from '../../components/PageLoader/PageLoader.jsx';
 
 export default function Post() {
   const params = useParams();
@@ -15,7 +16,7 @@ export default function Post() {
   }
 
   if (loading) {
-    return 'Loading...';
+    return <PageLoader />;
   }
 
   return (

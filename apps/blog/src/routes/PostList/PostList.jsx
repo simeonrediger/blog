@@ -3,6 +3,7 @@ import useFetch from '../../hooks/useFetch.js';
 
 import styles from './PostList.module.css';
 import ErrorPage from '../ErrorPage/ErrorPage.jsx';
+import PageLoader from '../../components/PageLoader/PageLoader.jsx';
 import PostListItem from './PostListItem/PostListItem.jsx';
 
 export default function PostList() {
@@ -10,7 +11,7 @@ export default function PostList() {
   const { posts = [] } = data ?? {};
 
   if (loading) {
-    return 'Loading...';
+    return <PageLoader />;
   }
 
   if (error) {
