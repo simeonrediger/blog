@@ -8,7 +8,6 @@ import PostListItem from './PostListItem/PostListItem.jsx';
 
 export default function PostList() {
   const { data, loading, error } = useFetch(api.posts.getAll);
-  const { posts = [] } = data ?? {};
 
   if (loading) {
     return <PageLoader />;
@@ -17,6 +16,8 @@ export default function PostList() {
   if (error) {
     return <ErrorPage error={error} />;
   }
+
+  const { posts } = data;
 
   return (
     <section>

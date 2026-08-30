@@ -9,7 +9,6 @@ import PageLoader from '../../components/PageLoader/PageLoader.jsx';
 export default function Post() {
   const params = useParams();
   const { data, loading, error } = useFetch(api.posts.getById, params);
-  const { title, content } = data.post ?? {};
 
   if (error) {
     return <ErrorPage error={error} />;
@@ -18,6 +17,8 @@ export default function Post() {
   if (loading) {
     return <PageLoader />;
   }
+
+  const { title, content } = data.post;
 
   return (
     <section>
