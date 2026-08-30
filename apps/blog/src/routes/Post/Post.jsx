@@ -6,6 +6,7 @@ import useFetch from '../../hooks/useFetch.js';
 export default function Post() {
   const params = useParams();
   const { post } = useFetch(api.posts.getById, params);
+  const { title } = post ?? {};
 
-  return <section>{post?.title}</section>;
+  return <section>{title}</section>;
 }
