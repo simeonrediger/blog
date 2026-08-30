@@ -6,11 +6,12 @@ import useFetch from '../../hooks/useFetch.js';
 export default function Post() {
   const params = useParams();
   const { post } = useFetch(api.posts.getById, params);
-  const { title } = post ?? {};
+  const { title, content } = post ?? {};
 
   return (
     <section>
       <h2>{title}</h2>
+      <p>{content}</p>
     </section>
   );
 }
