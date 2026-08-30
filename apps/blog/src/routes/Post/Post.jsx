@@ -8,5 +8,9 @@ export default function Post() {
   const { post } = useFetch(api.posts.getById, params);
   const { title } = post ?? {};
 
-  return <section>{title}</section>;
+  return (
+    <section>
+      <h2>{title}</h2>
+    </section>
+  );
 }
