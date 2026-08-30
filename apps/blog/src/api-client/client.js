@@ -10,11 +10,11 @@ function extend(api, resourceName, resourceApi) {
   api[resourceName] = {};
 
   for (const [methodName, { path, options }] of Object.entries(resourceApi)) {
-    api[resourceName][methodName] = fetchApi(path, options);
+    api[resourceName][methodName] = createApiMethod(path, options);
   }
 }
 
-function fetchApi(path, options) {
+function createApiMethod(path, options) {
   return typeof path === 'function'
     ? param => fetch(`${API_ORIGIN}${path(param)}`, options)
     : () => fetch(`${API_ORIGIN}${path}`, options);
