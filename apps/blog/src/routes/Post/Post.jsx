@@ -7,5 +7,5 @@ export default function Post() {
   const params = useParams();
   const { post } = useFetch(api.posts.getById, params);
 
-  return <div>{post?.title}</div>;
+  return <section>{post?.title}</section>;
 }
