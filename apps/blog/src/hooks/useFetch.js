@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react';
 
 export default function useFetch(fetchFunc, params) {
   const [data, setData] = useState({});
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchFunc(params).then(handleResponse).then(setData).catch(console.error);
+    fetchFunc(params).then(handleResponse).then(setData).catch(setError);
   }, [fetchFunc, params]);
 
-  return data;
+  return { data, error };
 }
 
 function handleResponse(res) {

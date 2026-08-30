@@ -2,10 +2,16 @@ import api from '../../api-client/client.js';
 import useFetch from '../../hooks/useFetch.js';
 
 import styles from './PostList.module.css';
+import ErrorPage from '../../components/ErrorPage/ErrorPage.jsx';
 import PostListItem from './PostListItem/PostListItem.jsx';
 
 export default function PostList() {
-  const { posts = [] } = useFetch(api.posts.getAll);
+  const { data, error } = useFetch(api.posts.getAll);
+  const { posts = [] } = data ?? {};
+
+  if (error) {
+    return <ErrorPage error={error} />;
+  }
 
   return (
     <section>
