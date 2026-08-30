@@ -15,7 +15,9 @@ function extend(api, resourceName, resourceApi) {
 }
 
 function fetchApi(path, options) {
-  return () => fetch(`${API_ORIGIN}${path}`, options);
+  return typeof path === 'function'
+    ? param => fetch(`${API_ORIGIN}${path(param)}`, options)
+    : () => fetch(`${API_ORIGIN}${path}`, options);
 }
 
 export default api;

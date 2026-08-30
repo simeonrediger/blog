@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 
-export default function useFetch(fetchFunc) {
+export default function useFetch(fetchFunc, pathParam) {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    fetchFunc().then(handleResponse).then(setData).catch(console.error);
-  }, [fetchFunc]);
+    fetchFunc(pathParam)
+      .then(handleResponse)
+      .then(setData)
+      .catch(console.error);
+  }, [fetchFunc, pathParam]);
 
   return data;
 }
