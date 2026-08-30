@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import api from '../../api-client/client.js';
 import useFetch from '../../hooks/useFetch.js';
 
-import DateTime from '../../components/DateTime/DateTime.jsx';
+import DateTime from '../../components/DateTime.jsx';
 import ErrorPage from '../ErrorPage/ErrorPage.jsx';
 import PageLoader from '../../components/PageLoader/PageLoader.jsx';
 

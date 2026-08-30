@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 
 import styles from './PostListItem.module.css';
-import DateTime from '../../../components/DateTime/DateTime.jsx';
+import DateTime from '../../../components/DateTime.jsx';
 
 export default function PostListItem({ id, title, createdAt, author }) {
   return (
