@@ -1,7 +1,9 @@
 import App from '../App/App.jsx';
-import NotFoundPage from './NotFoundPage/NotFoundPage.jsx';
+import ErrorPage from './ErrorPage/ErrorPage.jsx';
 import Post from './Post/Post.jsx';
 import PostList from './PostList/PostList.jsx';
+
+const notFoundError = { message: 'HTTP 404: Not Found' };
 
 const routes = [
   {
@@ -10,7 +12,7 @@ const routes = [
     children: [
       { index: true, element: <PostList /> },
       { path: '/posts/:id', element: <Post /> },
-      { path: '*', element: <NotFoundPage /> },
+      { path: '*', element: <ErrorPage error={notFoundError} /> },
     ],
   },
 ];

@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import api from '../../api-client/client.js';
 import useFetch from '../../hooks/useFetch.js';
 
-import ErrorPage from '../../components/ErrorPage/ErrorPage.jsx';
+import ErrorPage from '../ErrorPage/ErrorPage.jsx';
 
 export default function Post() {
   const params = useParams();
