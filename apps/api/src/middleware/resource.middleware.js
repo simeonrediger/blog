@@ -23,6 +23,11 @@ function requireResourceExists(
 ) {
   return async (req, res, next) => {
     const { [idParamName]: id } = matchedData(req, { locations: ['params'] });
+
+    if (!id) {
+      return errorController.handleNotFound(req, res);
+    }
+
     const resource = await findResourceById(id);
 
     if (!resource) {
