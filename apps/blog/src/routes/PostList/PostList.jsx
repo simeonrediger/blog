@@ -8,7 +8,7 @@ export default function PostList() {
   const { posts = [] } = useFetch(api.posts.getAll);
 
   return (
-    <div>
+    <section>
       <h2>Posts</h2>
       <ul className={styles.list}>
         {posts.map(post => (
@@ -17,6 +17,6 @@ export default function PostList() {
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 }
