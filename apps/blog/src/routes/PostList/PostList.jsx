@@ -6,8 +6,12 @@ import ErrorPage from '../ErrorPage/ErrorPage.jsx';
 import PostListItem from './PostListItem/PostListItem.jsx';
 
 export default function PostList() {
-  const { data, error } = useFetch(api.posts.getAll);
+  const { data, loading, error } = useFetch(api.posts.getAll);
   const { posts = [] } = data ?? {};
+
+  if (loading) {
+    return 'Loading...';
+  }
 
   if (error) {
     return <ErrorPage error={error} />;

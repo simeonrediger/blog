@@ -2,13 +2,18 @@ import { useEffect, useState } from 'react';
 
 export default function useFetch(fetchFunc, params) {
   const [data, setData] = useState({});
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchFunc(params).then(handleResponse).then(setData).catch(setError);
+    fetchFunc(params)
+      .then(handleResponse)
+      .then(setData)
+      .catch(setError)
+      .finally(() => setLoading(false));
   }, [fetchFunc, params]);
 
-  return { data, error };
+  return { data, loading, error };
 }
 
 function handleResponse(res) {

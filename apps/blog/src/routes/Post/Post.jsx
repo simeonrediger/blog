@@ -7,11 +7,15 @@ import ErrorPage from '../ErrorPage/ErrorPage.jsx';
 
 export default function Post() {
   const params = useParams();
-  const { data, error } = useFetch(api.posts.getById, params);
+  const { data, loading, error } = useFetch(api.posts.getById, params);
   const { title, content } = data.post ?? {};
 
   if (error) {
     return <ErrorPage error={error} />;
+  }
+
+  if (loading) {
+    return 'Loading...';
   }
 
   return (
