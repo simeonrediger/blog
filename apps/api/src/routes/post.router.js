@@ -15,6 +15,7 @@ postRouter.get(
   '/:id',
   postValidation.validateId(),
   resource.requirePostExists(),
+  authorization.requireRoleIf(req => !req.post.published, 'admin'),
   postController.getById,
 );
 

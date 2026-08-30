@@ -26,6 +26,16 @@ export function requireRole(role) {
   };
 }
 
+export function requireRoleIf(condition, role) {
+  return (req, res, next) => {
+    if (condition(req) && req.user?.role !== role) {
+      return errorController.handleForbidden(req, res);
+    }
+
+    next();
+  };
+}
+
 export function requireOwner(getOwnerId) {
   return (req, res, next) => {
     if (req.user.id !== getOwnerId(req)) {
