@@ -1,8 +1,8 @@
-@import './styles/reset.css';
-@import './styles/colors.css';
-@import './styles/base.css';
+@import '../styles/reset.css';
+@import '../styles/colors.css';
+@import '../styles/base.css';
 
-#root {
+.app {
   background-color: var(--color-app-bg);
   color: var(--color-text);
   min-height: 100vh;
