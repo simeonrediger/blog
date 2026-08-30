@@ -1,6 +1,7 @@
 import { Link } from 'react-router';
 
 import styles from './PostListItem.module.css';
+import DateTime from '../../../components/DateTime/DateTime.jsx';
 
 export default function PostListItem({ id, title, createdAt, author }) {
   return (
@@ -9,7 +10,9 @@ export default function PostListItem({ id, title, createdAt, author }) {
         <Link to={`/posts/${id}`}>{title}</Link>
       </h3>
       <p>by {author.username}</p>
-      <p className={styles.createdAt}>{new Date(createdAt).toLocaleString()}</p>
+      <p>
+        <DateTime value={createdAt} />
+      </p>
     </article>
   );
 }
