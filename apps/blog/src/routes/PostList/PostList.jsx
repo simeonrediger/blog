@@ -22,13 +22,17 @@ export default function PostList() {
   return (
     <section>
       <h2>Posts</h2>
-      <ul className={styles.list}>
-        {posts.map(post => (
-          <li key={post.id}>
-            <PostListItem {...post} />
-          </li>
-        ))}
-      </ul>
+      {posts.length === 0 ? (
+        <p>No one has posted yet.</p>
+      ) : (
+        <ul className={styles.list}>
+          {posts.map(post => (
+            <li key={post.id}>
+              <PostListItem {...post} />
+            </li>
+          ))}
+        </ul>
+      )}
     </section>
   );
 }
