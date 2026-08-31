@@ -5,7 +5,11 @@ export default function CommentSection({ comments }) {
   return (
     <section className={styles.commentSection}>
       <h2>Comments</h2>
-      <CommentList comments={comments} />
+      {comments.length === 0 ? (
+        <p>No one has commented yet.</p>
+      ) : (
+        <CommentList comments={comments} />
+      )}
     </section>
   );
 }
