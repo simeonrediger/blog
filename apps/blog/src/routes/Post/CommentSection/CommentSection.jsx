@@ -1,7 +1,16 @@
+import { useState } from 'react';
+
 import styles from './CommentSection.module.css';
+import CommentForm from './CommentForm/CommentForm.jsx';
 import CommentList from './CommentList/CommentList.jsx';
 
 export default function CommentSection({ comments }) {
+  const [formOpen, setFormOpen] = useState(false);
+
+  function toggleCommentForm() {
+    setFormOpen(!formOpen);
+  }
+
   return (
     <section className={styles.commentSection}>
       <h2>Comments</h2>
@@ -10,6 +19,13 @@ export default function CommentSection({ comments }) {
       ) : (
         <CommentList comments={comments} />
       )}
+      {formOpen && <CommentForm />}
+      <button
+        className={styles.toggleCommentFormButton}
+        onClick={toggleCommentForm}
+      >
+        {formOpen ? 'Cancel' : 'New comment'}
+      </button>
     </section>
   );
 }

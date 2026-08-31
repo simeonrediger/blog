@@ -23,10 +23,12 @@ html {
   --color-input-bg: var(--dark-gray-11);
   --color-input-text: var(--white);
   --color-input-text-disabled: var(--gray);
+  --color-input-border: var(--dark-gray-8);
 
   --color-button-bg-primary: var(--pale-blue);
   --color-button-bg-secondary: var(--dark-gray-11);
   --color-button-text: var(--white);
+  --color-button-border: var(--dark-gray-8);
 
   --color-modal-border: var(--dark-gray-8);
   --color-modal-backdrop: var(--transparent-black);

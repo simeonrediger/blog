@@ -1,3 +1,7 @@
 .commentSection {
   margin-block: 1rem;
 }
+
+.toggleCommentFormButton {
+  margin-block: 0.5rem;
+}

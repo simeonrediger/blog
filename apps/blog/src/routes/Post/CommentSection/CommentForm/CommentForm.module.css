@@ -1,0 +1,12 @@
+.commentForm {
+  margin-block: 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 0.5rem;
+}
+
+.messageInput {
+  width: 100%;
+}

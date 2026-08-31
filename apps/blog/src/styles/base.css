@@ -1,3 +1,31 @@
 a {
   color: var(--color-link);
 }
+
+button,
+input,
+textarea,
+select {
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+}
+
+button {
+  background-color: var(--color-button-bg-secondary);
+  border: 1px solid var(--color-button-border);
+  color: var(--color-button-text);
+}
+
+input,
+textarea,
+select {
+  background-color: var(--color-input-bg);
+  border: 1px solid var(--color-input-border);
+  color: var(--color-input-text);
+}
+
+textarea {
+  max-height: 10rem;
+  min-height: 2.75rem;
+  resize: vertical;
+}
