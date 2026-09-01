@@ -12,6 +12,7 @@ export default function CommentForm({ postId, onAddComment }) {
 
   function toggleCommentForm() {
     setFormOpen(!formOpen);
+    setErrors(null);
   }
 
   function handleAddComment(data) {
