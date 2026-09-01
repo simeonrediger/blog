@@ -14,10 +14,16 @@ function extend(api, resourceName, resourceApi) {
   }
 }
 
-function createApiMethod(path, options) {
+function createApiMethod(path, baseOptions) {
   return typeof path === 'function'
-    ? params => fetch(`${API_ORIGIN}${path(params)}`, options)
-    : () => fetch(`${API_ORIGIN}${path}`, options);
+    ? (params, options = {}) => {
+        Object.assign(options, baseOptions);
+        return fetch(`${API_ORIGIN}${path(params)}`, options);
+      }
+    : (options = {}) => {
+        Object.assign(options, baseOptions);
+        return fetch(`${API_ORIGIN}${path}`, options);
+      };
 }
 
 export default api;

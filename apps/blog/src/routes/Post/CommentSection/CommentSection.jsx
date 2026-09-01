@@ -4,11 +4,16 @@ import styles from './CommentSection.module.css';
 import CommentForm from './CommentForm/CommentForm.jsx';
 import CommentList from './CommentList/CommentList.jsx';
 
-export default function CommentSection({ comments }) {
+export default function CommentSection({ postId, comments, onAddComment }) {
   const [formOpen, setFormOpen] = useState(false);
 
   function toggleCommentForm() {
     setFormOpen(!formOpen);
+  }
+
+  function handleAddComment(data) {
+    onAddComment(data);
+    setFormOpen(false);
   }
 
   return (
@@ -19,7 +24,9 @@ export default function CommentSection({ comments }) {
       ) : (
         <CommentList comments={comments} />
       )}
-      {formOpen && <CommentForm />}
+      {formOpen && (
+        <CommentForm postId={postId} onAddComment={handleAddComment} />
+      )}
       <button
         className={styles.toggleCommentFormButton}
         onClick={toggleCommentForm}

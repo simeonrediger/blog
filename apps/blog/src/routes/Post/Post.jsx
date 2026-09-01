@@ -10,7 +10,7 @@ import PageLoader from '../../components/PageLoader/PageLoader.jsx';
 
 export default function Post() {
   const params = useParams();
-  const { data, loading, error } = useFetch(api.posts.getById, params);
+  const { data, setData, loading, error } = useFetch(api.posts.getById, params);
 
   if (error) {
     return <ErrorPage error={error} />;
@@ -20,7 +20,17 @@ export default function Post() {
     return <PageLoader />;
   }
 
-  const { title, content, createdAt, editedAt, author, comments } = data.post;
+  function addComment({ comment }) {
+    const newData = {
+      ...data,
+      post: { ...data.post, comments: [...data.post.comments, comment] },
+    };
+
+    setData(newData);
+  }
+
+  const { id, title, content, createdAt, editedAt, author, comments } =
+    data.post;
 
   return (
     <>
@@ -38,7 +48,11 @@ export default function Post() {
         </p>
         <p>{content}</p>
       </section>
-      <CommentSection comments={comments} />
+      <CommentSection
+        postId={id}
+        comments={comments}
+        onAddComment={addComment}
+      />
     </>
   );
 }

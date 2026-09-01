@@ -13,7 +13,7 @@ export default function useFetch(fetchFunc, params) {
       .finally(() => setLoading(false));
   }, [fetchFunc, params]);
 
-  return { data, loading, error };
+  return { data, setData, loading, error };
 }
 
 function handleResponse(res) {

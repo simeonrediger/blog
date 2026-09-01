@@ -1,0 +1,5 @@
+.errorList {
+  color: var(--color-error);
+  list-style: disc;
+  margin-inline-start: 1.25rem;
+}
