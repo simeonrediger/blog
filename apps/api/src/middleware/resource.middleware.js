@@ -16,6 +16,14 @@ export function requireCommentExists(idParamName) {
   );
 }
 
+export function requirePostContext(req, res, next) {
+  if (!req.post) {
+    return errorController.handleMethodNotAllowed(req, res);
+  }
+
+  next();
+}
+
 function requireResourceExists(
   resourceName,
   findResourceById,

@@ -10,6 +10,7 @@ const commentRouter = Router();
 
 commentRouter.post(
   '/',
+  resource.requirePostContext,
   commentValidation.validateCreate,
   commentController.create,
 );

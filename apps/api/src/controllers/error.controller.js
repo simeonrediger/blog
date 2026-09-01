@@ -16,6 +16,10 @@ export function handleNotFound(req, res) {
   res.status(404).json({ error: 'Resource not found' });
 }
 
+export function handleMethodNotAllowed(req, res) {
+  res.status(405).json({ error: 'Method not allowed' });
+}
+
 export function handleUnexpected(error, req, res, next) {
   console.error(error);
   res.status(500).json({ error: 'Server error' });
