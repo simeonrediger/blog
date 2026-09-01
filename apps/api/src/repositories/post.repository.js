@@ -8,13 +8,17 @@ export async function findById(id) {
 }
 
 export async function findAll() {
-  return await prisma.post.findMany({ include: { author: true } });
+  return await prisma.post.findMany({
+    include: { author: true },
+    orderBy: { createdAt: 'desc' },
+  });
 }
 
 export async function findAllPublished() {
   return await prisma.post.findMany({
     where: { published: true },
     include: { author: true },
+    orderBy: { createdAt: 'desc' },
   });
 }
 
