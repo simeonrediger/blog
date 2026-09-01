@@ -20,40 +20,44 @@ export default function CommentForm({ postId, onAddComment }) {
     setFormOpen(false);
   }
 
-  return formOpen ? (
-    <form
-      className={styles.commentForm}
-      onSubmit={event =>
-        handleSubmit({
-          event,
-          callApi: api.posts.createComment,
-          params: { id: postId },
-          fields: ['authorName', 'content'],
-          handleData: handleAddComment,
-          handleError: setErrors,
-        })
-      }
-    >
-      <h3>Post a comment</h3>
-      <input
-        name="authorName"
-        aria-label="Display name"
-        placeholder="Display name"
-      />
-      <textarea
-        name="content"
-        aria-label="Message"
-        placeholder="Message"
-        className={styles.messageInput}
-      ></textarea>
-      {errors?.length > 0 && <ErrorList errors={errors} />}
-      <div className={styles.buttonRow}>
+  return (
+    <div className={styles.commentFormWrapper}>
+      {formOpen ? (
+        <form
+          className={styles.commentForm}
+          onSubmit={event =>
+            handleSubmit({
+              event,
+              callApi: api.posts.createComment,
+              params: { id: postId },
+              fields: ['authorName', 'content'],
+              handleData: handleAddComment,
+              handleError: setErrors,
+            })
+          }
+        >
+          <h3>Post a comment</h3>
+          <input
+            name="authorName"
+            aria-label="Display name"
+            placeholder="Display name"
+          />
+          <textarea
+            name="content"
+            aria-label="Message"
+            placeholder="Message"
+            className={styles.messageInput}
+          ></textarea>
+          {errors?.length > 0 && <ErrorList errors={errors} />}
+          <div className={styles.buttonRow}>
+            <CancelButton enabled={formOpen} onClick={toggleCommentForm} />
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      ) : (
         <CancelButton enabled={formOpen} onClick={toggleCommentForm} />
-        <button type="submit">Submit</button>
-      </div>
-    </form>
-  ) : (
-    <CancelButton enabled={formOpen} onClick={toggleCommentForm} />
+      )}
+    </div>
   );
 }
 
