@@ -24,7 +24,7 @@ export default function Post() {
   function addComment({ comment }) {
     const newData = {
       ...data,
-      post: { ...data.post, comments: [...data.post.comments, comment] },
+      post: { ...data.post, comments: [comment, ...data.post.comments] },
     };
 
     setData(newData);
