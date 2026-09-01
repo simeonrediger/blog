@@ -8,6 +8,14 @@
   color: var(--color-text);
   min-height: 100vh;
   padding: 1rem 2rem;
+
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  max-width: 35rem;
+  width: 100%;
 }
 
 .header {
