@@ -3,7 +3,7 @@ import prisma from '../db/prisma.js';
 export async function findById(id) {
   return await prisma.post.findUnique({
     where: { id },
-    include: { author: true, comments: true },
+    include: { author: true, comments: { orderBy: { createdAt: 'desc' } } },
   });
 }
 
