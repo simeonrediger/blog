@@ -1,4 +1,4 @@
-import App from '../App/App.jsx';
+import App from '@/App/App.jsx';
 import ErrorPage from './ErrorPage/ErrorPage.jsx';
 import Post from './Post/Post.jsx';
 import PostList from './PostList/PostList.jsx';

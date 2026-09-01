@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-import api from '../../../../api-client/client.js';
-import handleSubmit from '../../../../api-client/api-utils.js';
+import api from '@/api-client/client.js';
+import handleSubmit from '@/api-client/api-utils.js';
 
 import styles from './CommentForm.module.css';
-import ErrorList from '../../../../components/ErrorList/ErrorList.jsx';
+import ErrorList from '@/components/ErrorList/ErrorList.jsx';
 
 export default function CommentForm({ postId, onAddComment }) {
   const [formOpen, setFormOpen] = useState(false);

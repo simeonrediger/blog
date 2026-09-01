@@ -1,9 +1,9 @@
-import api from '../../api-client/client.js';
-import useFetch from '../../hooks/useFetch.js';
+import api from '@/api-client/client.js';
+import useFetch from '@/hooks/useFetch.js';
 
 import styles from './PostList.module.css';
 import ErrorPage from '../ErrorPage/ErrorPage.jsx';
-import PageLoader from '../../components/PageLoader/PageLoader.jsx';
+import PageLoader from '@/components/PageLoader/PageLoader.jsx';
 import PostListItem from './PostListItem/PostListItem.jsx';
 
 export default function PostList() {

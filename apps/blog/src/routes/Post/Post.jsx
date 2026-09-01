@@ -1,12 +1,12 @@
 import { useParams } from 'react-router';
 
-import api from '../../api-client/client.js';
-import useFetch from '../../hooks/useFetch.js';
+import api from '@/api-client/client.js';
+import useFetch from '@/hooks/useFetch.js';
 
 import CommentSection from './CommentSection/CommentSection.jsx';
-import DateTime from '../../components/DateTime.jsx';
+import DateTime from '@/components/DateTime.jsx';
 import ErrorPage from '../ErrorPage/ErrorPage.jsx';
-import PageLoader from '../../components/PageLoader/PageLoader.jsx';
+import PageLoader from '@/components/PageLoader/PageLoader.jsx';
 
 export default function Post() {
   const params = useParams();
