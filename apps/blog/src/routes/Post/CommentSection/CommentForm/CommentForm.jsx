@@ -41,12 +41,14 @@ export default function CommentForm({ postId, onAddComment }) {
             name="authorName"
             aria-label="Display name"
             placeholder="Display name"
+            required
           />
           <textarea
             name="content"
             aria-label="Message"
             placeholder="Message"
             className={styles.messageInput}
+            required
           ></textarea>
           {errors?.length > 0 && <ErrorList errors={errors} />}
           <div className={styles.buttonRow}>
