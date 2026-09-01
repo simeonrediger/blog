@@ -14,7 +14,7 @@ postRouter.get('/', postController.getAll);
 postRouter.get(
   '/:id',
   postValidation.validateId(),
-  resource.requirePostExists(),
+  resource.loadPost(),
   authorization.requireRoleIf(req => !req.post.published, 'admin'),
   postController.getById,
 );
@@ -22,7 +22,7 @@ postRouter.get(
 postRouter.use(
   '/:postId/comments',
   postValidation.validateId('postId'),
-  resource.requirePostExists('postId'),
+  resource.loadPost('postId'),
   commentRouter,
 );
 
@@ -33,7 +33,7 @@ postRouter
   .route('/:id')
   .all(
     postValidation.validateId(),
-    resource.requirePostExists(),
+    resource.loadPost(),
     authorization.requireOwner(req => req.post.authorId),
   )
   .put(postValidation.validateUpdate, postController.updateById)

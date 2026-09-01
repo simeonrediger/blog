@@ -4,16 +4,12 @@ import * as commentRepository from '../repositories/comment.repository.js';
 import * as errorController from '../controllers/error.controller.js';
 import * as postRepository from '../repositories/post.repository.js';
 
-export function requirePostExists(idParamName) {
-  return requireResourceExists('post', postRepository.findById, idParamName);
+export function loadPost(idParamName) {
+  return loadResource('post', postRepository.findById, idParamName);
 }
 
-export function requireCommentExists(idParamName) {
-  return requireResourceExists(
-    'comment',
-    commentRepository.findById,
-    idParamName,
-  );
+export function loadComment(idParamName) {
+  return loadResource('comment', commentRepository.findById, idParamName);
 }
 
 export function requirePostContext(req, res, next) {
@@ -24,11 +20,7 @@ export function requirePostContext(req, res, next) {
   next();
 }
 
-function requireResourceExists(
-  resourceName,
-  findResourceById,
-  idParamName = 'id',
-) {
+function loadResource(resourceName, findResourceById, idParamName = 'id') {
   return async (req, res, next) => {
     const { [idParamName]: id } = matchedData(req, { locations: ['params'] });
 
