@@ -1,12 +1,19 @@
-import { Outlet } from 'react-router';
+import { NavLink, Outlet } from 'react-router';
 
 import styles from './App.module.css';
 
 export default function App() {
   return (
     <div className={styles.app}>
-      <header>
+      <header className={styles.header}>
         <h1>Blog</h1>
+        <nav>
+          <ul>
+            <li>
+              <NavLink to="/">Home</NavLink>
+            </li>
+          </ul>
+        </nav>
       </header>
       <main>
         <Outlet />
