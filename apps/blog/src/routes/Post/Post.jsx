@@ -47,7 +47,7 @@ export default function Post() {
             </>
           )}
         </p>
-        <p>{content}</p>
+        <p className={styles.content}>{content}</p>
       </section>
       <CommentSection
         postId={id}

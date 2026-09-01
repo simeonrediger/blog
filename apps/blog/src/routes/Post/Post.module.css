@@ -1,3 +1,7 @@
 .timestamps {
   color: var(--color-text-secondary);
 }
+
+.content {
+  margin-block: 1rem;
+}
