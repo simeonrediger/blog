@@ -1,16 +1,24 @@
-import posts from './posts.js';
-
 const API_ORIGIN = import.meta.env.VITE_API_ORIGIN;
 
-const api = {};
+const api = {
+  posts: {
+    getAll: { path: '/posts' },
+    getById: { path: ({ id }) => `/posts/${id}` },
+    createComment: {
+      path: ({ id }) => `/posts/${id}/comments`,
+      options: {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      },
+    },
+  },
+};
 
-extend(api, 'posts', posts);
+buildApi(api.posts);
 
-function extend(api, resourceName, resourceApi) {
-  api[resourceName] = {};
-
-  for (const [methodName, { path, options }] of Object.entries(resourceApi)) {
-    api[resourceName][methodName] = createApiMethod(path, options);
+function buildApi(apiNamespace) {
+  for (const [methodName, { path, options }] of Object.entries(apiNamespace)) {
+    apiNamespace[methodName] = createApiMethod(path, options);
   }
 }
 
