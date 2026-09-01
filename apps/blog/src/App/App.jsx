@@ -6,7 +6,7 @@ export default function App() {
   return (
     <div className={styles.app}>
       <header className={styles.header}>
-        <h1>Blog</h1>
+        <h1 className={styles.siteTitle}>Blog</h1>
         <nav>
           <ul>
             <li>

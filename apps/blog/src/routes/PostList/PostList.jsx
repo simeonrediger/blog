@@ -21,7 +21,7 @@ export default function PostList() {
 
   return (
     <section>
-      <h2>Posts</h2>
+      <h2 className="pageTitle">Posts</h2>
       {posts.length === 0 ? (
         <p>No one has posted yet.</p>
       ) : (

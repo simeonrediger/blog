@@ -35,7 +35,7 @@ export default function Post() {
   return (
     <>
       <section>
-        <h2>{title}</h2>
+        <h2 className="pageTitle">{title}</h2>
         <p>by {author.username}</p>
         <p>
           <DateTime value={createdAt} />
