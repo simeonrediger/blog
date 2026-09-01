@@ -3,8 +3,9 @@ import { useParams } from 'react-router';
 import api from '@/api-client/client.js';
 import useFetch from '@/hooks/useFetch.js';
 
+import styles from './Post.module.css';
 import CommentSection from './CommentSection/CommentSection.jsx';
-import DateTime from '@/components/DateTime.jsx';
+import DateTime from '@/components/DateTime/DateTime.jsx';
 import ErrorPage from '../ErrorPage/ErrorPage.jsx';
 import PageLoader from '@/components/PageLoader/PageLoader.jsx';
 
@@ -37,7 +38,7 @@ export default function Post() {
       <section>
         <h2 className="pageTitle">{title}</h2>
         <p>by {author.username}</p>
-        <p>
+        <p className={styles.timestamps}>
           <DateTime value={createdAt} />
           {editedAt !== createdAt && (
             <>

@@ -1,6 +1,8 @@
+import styles from './DateTime.module.css';
+
 export default function DateTime({ value }) {
   return (
-    <span>
+    <span className={styles.dateTime}>
       {new Date(value).toLocaleString(undefined, {
         dateStyle: 'short',
         timeStyle: 'short',

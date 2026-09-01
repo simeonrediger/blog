@@ -1,4 +1,4 @@
-import DateTime from '@/components/DateTime.jsx';
+import DateTime from '@/components/DateTime/DateTime.jsx';
 
 export default function CommentListItem({
   authorName,
