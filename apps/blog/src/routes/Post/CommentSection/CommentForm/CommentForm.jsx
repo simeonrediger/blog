@@ -7,9 +7,19 @@ import styles from './CommentForm.module.css';
 import ErrorList from '../../../../components/ErrorList/ErrorList.jsx';
 
 export default function CommentForm({ postId, onAddComment }) {
+  const [formOpen, setFormOpen] = useState(false);
   const [errors, setErrors] = useState(null);
 
-  return (
+  function toggleCommentForm() {
+    setFormOpen(!formOpen);
+  }
+
+  function handleAddComment(data) {
+    onAddComment(data);
+    setFormOpen(false);
+  }
+
+  return formOpen ? (
     <form
       className={styles.commentForm}
       onSubmit={event =>
@@ -18,7 +28,7 @@ export default function CommentForm({ postId, onAddComment }) {
           callApi: api.posts.createComment,
           params: { id: postId },
           fields: ['authorName', 'content'],
-          handleData: onAddComment,
+          handleData: handleAddComment,
           handleError: setErrors,
         })
       }
@@ -36,7 +46,18 @@ export default function CommentForm({ postId, onAddComment }) {
         className={styles.messageInput}
       ></textarea>
       {errors?.length > 0 && <ErrorList errors={errors} />}
-      <button type="submit">Submit</button>
+      <div className={styles.buttonRow}>
+        <CancelButton enabled={formOpen} onClick={toggleCommentForm} />
+        <button type="submit">Submit</button>
+      </div>
     </form>
+  ) : (
+    <CancelButton enabled={formOpen} onClick={toggleCommentForm} />
   );
 }
+
+const CancelButton = ({ enabled, onClick }) => (
+  <button className={styles.toggleCommentFormButton} onClick={onClick}>
+    {enabled ? 'Cancel' : 'New comment'}
+  </button>
+);

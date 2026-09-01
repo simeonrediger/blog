@@ -10,3 +10,8 @@
 .messageInput {
   width: 100%;
 }
+
+.buttonRow {
+  display: flex;
+  gap: 0.5rem;
+}
