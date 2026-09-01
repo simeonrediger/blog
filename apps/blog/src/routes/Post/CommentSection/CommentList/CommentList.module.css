@@ -1,11 +1,11 @@
 .commentList {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
 }
 
 .commentList > * {
   border-top: 1px solid var(--color-divider);
+  padding-block: 0.5rem;
 }
 
 .commentList > :last-child {
