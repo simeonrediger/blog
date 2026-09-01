@@ -8,7 +8,7 @@ export default function CommentListItem({
   editedAt,
 }) {
   return (
-    <div>
+    <>
       <div className={styles.info}>
         <h3>{authorName}</h3>
         <p>
@@ -22,6 +22,6 @@ export default function CommentListItem({
         </p>
       </div>
       <p>{content}</p>
-    </div>
+    </>
   );
 }
