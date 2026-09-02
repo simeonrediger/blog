@@ -1,8 +1,8 @@
 const API_ORIGIN = import.meta.env.VITE_API_ORIGIN;
 
-export default function buildApi(apiNamespace) {
-  for (const [methodName, { path, options }] of Object.entries(apiNamespace)) {
-    apiNamespace[methodName] = createApiMethod(path, options);
+export default function buildApi(apiSchema) {
+  for (const [methodName, { path, options }] of Object.entries(apiSchema)) {
+    apiSchema[methodName] = createApiMethod(path, options);
   }
 }
 
