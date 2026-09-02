@@ -1,4 +1,4 @@
-import buildApi from './build-api.js';
+import { buildApi } from '@blog/api-client';
 
 const jsonHeader = { 'Content-Type': 'application/json' };
 

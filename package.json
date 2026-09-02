@@ -2,7 +2,8 @@
   "name": "blog-api",
   "private": true,
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "packages/*"
   ],
   "allowScripts": {
     "prisma": true,
