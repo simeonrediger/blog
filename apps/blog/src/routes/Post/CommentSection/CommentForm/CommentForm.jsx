@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
+import { handleSubmit } from '@blog/api-client';
+
 import api from '@/api-client/client.js';
-import handleSubmit from '@/api-client/handle-submit.js';
 
 import styles from './CommentForm.module.css';
 import ErrorList from '@/components/ErrorList/ErrorList.jsx';

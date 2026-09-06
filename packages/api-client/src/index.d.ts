@@ -20,3 +20,22 @@ type ApiClient<Selection extends MethodNamesByResource> = {
 export default function createApiClient<
   Selection extends MethodNamesByResource,
 >(methodNamesByResource: Selection): ApiClient<Selection>;
+
+type ApiMethod = {
+  [ResourceName in keyof Api]: Api[ResourceName][keyof Api[ResourceName]];
+}[keyof Api];
+
+type PathParams = Record<string, string | number | boolean>;
+
+/**
+ * Handles form submission by collecting field values, calling an API method,
+ * and processing the response data or errors.
+ */
+export function handleSubmit(options: {
+  event: SubmitEvent;
+  callApi: ApiMethod;
+  params: PathParams;
+  fields: string[];
+  handleData: (data: unknown) => void;
+  handleError: (error: string[] | null) => void;
+}): void;
