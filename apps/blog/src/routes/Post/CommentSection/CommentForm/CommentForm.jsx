@@ -28,7 +28,7 @@ export default function CommentForm({ postId, onAddComment }) {
           onSubmit={event =>
             handleSubmit({
               event,
-              callApi: api.posts.createComment,
+              callApi: api.comments.create,
               params: { id: postId },
               fields: ['authorName', 'content'],
               handleData: handleAddComment,

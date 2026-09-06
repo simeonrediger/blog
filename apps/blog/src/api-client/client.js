@@ -6,7 +6,9 @@ const api = {
   posts: {
     getAll: { path: '/posts' },
     getById: { path: ({ id }) => `/posts/${id}` },
-    createComment: {
+  },
+  comments: {
+    create: {
       path: ({ id }) => `/posts/${id}/comments`,
       options: { method: 'POST', headers: { ...jsonHeader } },
     },
@@ -14,5 +16,6 @@ const api = {
 };
 
 buildApi(api.posts);
+buildApi(api.comments);
 
 export default api;
