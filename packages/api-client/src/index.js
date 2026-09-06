@@ -1,1 +1,1 @@
-export { default as buildApi } from './build-api.js';
+export { default } from './create-api-client.js';

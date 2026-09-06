@@ -1,16 +1,22 @@
-export type PathParams = Record<string, string>;
+import api from './api.js';
 
-export type PathFunction = (params: PathParams) => string;
+type Api = typeof api;
 
-export interface ApiMethodSchema {
-  path: string | PathFunction;
-  options?: RequestInit;
-}
-
-export type ApiSchema = Record<string, ApiMethodSchema>;
-
-export type ApiClient<T extends ApiSchema> = {
-  [K in keyof T]: () => Promise<Response>;
+type MethodNamesByResource = {
+  [ResourceName in keyof Api]?: Array<keyof Api[ResourceName]>;
 };
 
-export function buildApi<T extends ApiSchema>(apiSchema: T): ApiClient<T>;
+type ApiClient<Selection extends MethodNamesByResource> = {
+  [ResourceName in keyof Selection]: {
+    [
+      MethodName in Selection[ResourceName][number]
+    ]: Api[ResourceName][MethodName & keyof Api[ResourceName]];
+  };
+};
+
+/**
+ * Creates an API client containing the specified methods.
+ */
+export default function createApiClient<
+  Selection extends MethodNamesByResource,
+>(methodNamesByResource: Selection): ApiClient<Selection>;
