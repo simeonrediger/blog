@@ -6,7 +6,7 @@ import useFetch from '@/hooks/useFetch.js';
 import styles from './Post.module.css';
 import CommentSection from './CommentSection/CommentSection.jsx';
 import DateTime from '@/components/DateTime/DateTime.jsx';
-import ErrorPage from '../ErrorPage/ErrorPage.jsx';
+import ErrorPage from '@/components/ErrorPage/ErrorPage.jsx';
 import PageLoader from '@/components/PageLoader/PageLoader.jsx';
 
 export default function Post() {

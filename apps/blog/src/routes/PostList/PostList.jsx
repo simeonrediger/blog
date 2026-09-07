@@ -2,7 +2,7 @@ import api from '@/api-client.js';
 import useFetch from '@/hooks/useFetch.js';
 
 import styles from './PostList.module.css';
-import ErrorPage from '../ErrorPage/ErrorPage.jsx';
+import ErrorPage from '@/components/ErrorPage/ErrorPage.jsx';
 import PageLoader from '@/components/PageLoader/PageLoader.jsx';
 import PostListItem from './PostListItem/PostListItem.jsx';
 
