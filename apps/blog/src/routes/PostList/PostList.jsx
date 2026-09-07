@@ -1,4 +1,4 @@
-import api from '@/api-client/client.js';
+import api from '@/api-client.js';
 import useFetch from '@/hooks/useFetch.js';
 
 import styles from './PostList.module.css';
