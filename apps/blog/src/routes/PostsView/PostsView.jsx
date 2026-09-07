@@ -1,12 +1,11 @@
 import api from '@/api-client.js';
 import useFetch from '@/hooks/useFetch.js';
 
-import styles from './PostList.module.css';
 import ErrorPage from '@/components/ErrorPage/ErrorPage.jsx';
 import PageLoader from '@/components/PageLoader/PageLoader.jsx';
-import PostListItem from './PostListItem/PostListItem.jsx';
+import PostList from './PostList/PostList.jsx';
 
-export default function PostList() {
+export default function PostsView() {
   const { data, loading, error } = useFetch(api.posts.getAll);
 
   if (loading) {
@@ -25,13 +24,7 @@ export default function PostList() {
       {posts.length === 0 ? (
         <p>No one has posted yet.</p>
       ) : (
-        <ul className={styles.list}>
-          {posts.map(post => (
-            <li key={post.id}>
-              <PostListItem {...post} />
-            </li>
-          ))}
-        </ul>
+        <PostList posts={posts} />
       )}
     </section>
   );

@@ -1,14 +1,14 @@
 import App from '@/App/App.jsx';
 import NotFoundPage from './NotFoundPage.jsx';
 import Post from './Post/Post.jsx';
-import PostList from './PostList/PostList.jsx';
+import PostsView from './PostsView/PostsView.jsx';
 
 const routes = [
   {
     path: '/',
     element: <App />,
     children: [
-      { index: true, element: <PostList /> },
+      { index: true, element: <PostsView /> },
       { path: '/posts/:id', element: <Post /> },
       { path: '*', element: <NotFoundPage /> },
     ],
