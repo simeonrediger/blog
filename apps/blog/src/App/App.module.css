@@ -17,13 +17,3 @@
   max-width: 35rem;
   width: 100%;
 }
-
-.header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-}
-
-.siteTitle {
-  font-weight: bold;
-}
