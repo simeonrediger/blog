@@ -7,3 +7,8 @@
 .siteTitle {
   font-weight: bold;
 }
+
+.navList {
+  display: flex;
+  gap: 1rem;
+}
