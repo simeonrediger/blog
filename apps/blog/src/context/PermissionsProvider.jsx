@@ -5,6 +5,7 @@ export default function PermissionsProvider({ user, children }) {
 
   const permissions = {
     user: { create: isAdmin },
+    post: { create: isAdmin },
     comment: { create: true },
   };
 

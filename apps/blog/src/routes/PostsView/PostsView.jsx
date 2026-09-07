@@ -1,12 +1,17 @@
+import { Link } from 'react-router';
+
 import api from '@/api-client.js';
 import useFetch from '@/hooks/useFetch.js';
+import usePermissions from '@/hooks/usePermissions.js';
 
+import styles from './PostsView.module.css';
 import ErrorPage from '@/components/ErrorPage/ErrorPage.jsx';
 import PageLoader from '@/components/PageLoader/PageLoader.jsx';
 import PostList from './PostList/PostList.jsx';
 
 export default function PostsView() {
   const { data, loading, error } = useFetch(api.posts.getAll);
+  const permissions = usePermissions();
 
   if (loading) {
     return <PageLoader />;
@@ -21,6 +26,11 @@ export default function PostsView() {
   return (
     <section>
       <h2 className="pageTitle">Posts</h2>
+      {permissions.post.create && (
+        <Link to="/new-post" className={`${styles.newPostLink} button`}>
+          New post
+        </Link>
+      )}
       {posts.length === 0 ? (
         <p>No one has posted yet.</p>
       ) : (
