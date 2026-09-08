@@ -2,18 +2,18 @@ export default function handleSubmit({
   event,
   callApi,
   params,
+  body,
   fields,
   handleData,
   handleError,
 }) {
-  event.preventDefault();
-  const form = event.target;
+  event?.preventDefault();
 
-  const body = JSON.stringify(
-    Object.fromEntries(
-      fields.map(field => [field, form.elements[field].value]),
-    ),
+  body ??= Object.fromEntries(
+    fields.map(field => [field, event.target.elements[field].value]),
   );
+
+  body = JSON.stringify(body);
 
   callApi(params, { body })
     .then(res => res.json())

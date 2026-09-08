@@ -1,0 +1,6 @@
+.publishToggle {
+  background-color: var(--color-publish-toggle-bg);
+  border: none;
+  color: var(--color-publish-toggle-text);
+  padding: 0;
+}

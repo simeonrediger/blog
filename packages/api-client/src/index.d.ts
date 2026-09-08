@@ -27,15 +27,19 @@ type ApiMethod = {
 
 type PathParams = Record<string, string | number | boolean>;
 
+type XOR<A, B> =
+  (A & { [K in keyof B]?: never }) | (B & { [K in keyof A]?: never });
+
 /**
  * Handles form submission by collecting field values, calling an API method,
  * and processing the response data or errors.
  */
-export function handleSubmit(options: {
-  event: SubmitEvent;
-  callApi: ApiMethod;
-  params: PathParams;
-  fields: string[];
-  handleData: (data: unknown) => void;
-  handleError: (error: string[] | null) => void;
-}): void;
+export function handleSubmit(
+  options: {
+    event?: SubmitEvent;
+    callApi: ApiMethod;
+    params: PathParams;
+    handleData: (data: unknown) => void;
+    handleError: (error: string[] | null) => void;
+  } & XOR<{ body: Record<string, unknown> }, { fields: string[] }>,
+): void;

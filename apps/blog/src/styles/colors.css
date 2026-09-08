@@ -36,4 +36,6 @@ html {
 
   --color-loader: var(--pale-light-blue);
   --color-post-list-item: var(--dark-gray-11);
+  --color-publish-toggle-bg: transparent;
+  --color-publish-toggle-text: var(--color-link);
 }
