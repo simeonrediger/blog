@@ -53,19 +53,23 @@ export default function CommentForm({ postId, onAddComment }) {
           ></textarea>
           {errors?.length > 0 && <ErrorList errors={errors} />}
           <div className={styles.buttonRow}>
-            <CancelButton enabled={formOpen} onClick={toggleCommentForm} />
+            <button
+              className={styles.toggleCommentFormButton}
+              onClick={toggleCommentForm}
+            >
+              Cancel
+            </button>
             <button type="submit">Submit</button>
           </div>
         </form>
       ) : (
-        <CancelButton enabled={formOpen} onClick={toggleCommentForm} />
+        <button
+          className={styles.toggleCommentFormButton}
+          onClick={toggleCommentForm}
+        >
+          New comment
+        </button>
       )}
     </div>
   );
 }
-
-const CancelButton = ({ enabled, onClick }) => (
-  <button className={styles.toggleCommentFormButton} onClick={onClick}>
-    {enabled ? 'Cancel' : 'New comment'}
-  </button>
-);
