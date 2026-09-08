@@ -1,5 +1,5 @@
-import { Link } from 'react-router';
+import EditButton from './EditButton.jsx';
 
 export default function EditPostButton({ postId }) {
-  return <Link to={`/posts/${postId}/edit`}>Edit</Link>;
+  return <EditButton to={`/posts/${postId}/edit`} />;
 }
