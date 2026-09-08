@@ -2,7 +2,12 @@ import { handleSubmit } from '@blog/api-client';
 
 import styles from './DeleteButton.module.css';
 
-export default function DeleteButton({ resourceId, callApi, onDelete }) {
+export default function DeleteButton({
+  resourceId,
+  callApi,
+  onDelete,
+  className,
+}) {
   function handleDelete() {
     handleSubmit({
       callApi,
@@ -17,7 +22,10 @@ export default function DeleteButton({ resourceId, callApi, onDelete }) {
   }
 
   return (
-    <button className={styles.deleteButton} onClick={handleDelete}>
+    <button
+      className={`${className ? className + ' ' : ''}${styles.deleteButton}`}
+      onClick={handleDelete}
+    >
       Delete
     </button>
   );
