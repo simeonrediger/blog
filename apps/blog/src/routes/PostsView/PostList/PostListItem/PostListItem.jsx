@@ -1,12 +1,8 @@
 import { Link } from 'react-router';
 
-import usePermissions from '@/hooks/usePermissions.js';
-
 import styles from './PostListItem.module.css';
 import DateTime from '@/components/DateTime/DateTime.jsx';
-import DeletePostButton from '@/components/DeletePostButton.jsx';
-import EditPostButton from '@/components/EditPostButton.jsx';
-import PublishToggle from '@/components/PublishToggle/PublishToggle.jsx';
+import PostActions from '@/components/PostActions/PostActions.jsx';
 
 export default function PostListItem({
   id,
@@ -16,8 +12,6 @@ export default function PostListItem({
   author,
   onDeletePost,
 }) {
-  const permissions = usePermissions();
-
   return (
     <article className={styles.listItem}>
       <h3>
@@ -27,19 +21,11 @@ export default function PostListItem({
       <p>
         <DateTime value={createdAt} />
       </p>
-      {(permissions.post.update || permissions.post.delete) && (
-        <div className={styles.actions}>
-          {permissions.post.update && (
-            <>
-              <EditPostButton postId={id} />
-              <PublishToggle postId={id} initialPublished={published} />
-            </>
-          )}
-          {permissions.post.delete && (
-            <DeletePostButton postId={id} onDeletePost={onDeletePost} />
-          )}
-        </div>
-      )}
+      <PostActions
+        postId={id}
+        published={published}
+        onDeletePost={onDeletePost}
+      />
     </article>
   );
 }
