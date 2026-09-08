@@ -1,4 +1,4 @@
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 
 import api from '@/api-client.js';
 import useFetch from '@/hooks/useFetch.js';
@@ -8,9 +8,11 @@ import CommentSection from './CommentSection/CommentSection.jsx';
 import DateTime from '@/components/DateTime/DateTime.jsx';
 import ErrorPage from '@/components/ErrorPage/ErrorPage.jsx';
 import PageLoader from '@/components/PageLoader/PageLoader.jsx';
+import PostActions from '@/components/PostActions/PostActions.jsx';
 
 export default function Post() {
   const params = useParams();
+  const navigate = useNavigate();
   const { data, setData, loading, error } = useFetch(api.posts.getById, params);
 
   if (loading) {
@@ -19,6 +21,10 @@ export default function Post() {
 
   if (error) {
     return <ErrorPage error={error} />;
+  }
+
+  function handleDeletePost() {
+    navigate('/');
   }
 
   function addComment({ comment }) {
@@ -30,8 +36,16 @@ export default function Post() {
     setData(newData);
   }
 
-  const { id, title, content, createdAt, editedAt, author, comments } =
-    data.post;
+  const {
+    id,
+    title,
+    content,
+    published,
+    createdAt,
+    editedAt,
+    author,
+    comments,
+  } = data.post;
 
   return (
     <>
@@ -47,6 +61,11 @@ export default function Post() {
             </>
           )}
         </p>
+        <PostActions
+          postId={id}
+          published={published}
+          onDeletePost={handleDeletePost}
+        />
         <p className={styles.content}>{content}</p>
       </section>
       <CommentSection
