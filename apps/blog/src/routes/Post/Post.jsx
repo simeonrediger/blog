@@ -13,12 +13,12 @@ export default function Post() {
   const params = useParams();
   const { data, setData, loading, error } = useFetch(api.posts.getById, params);
 
-  if (error) {
-    return <ErrorPage error={error} />;
-  }
-
   if (loading) {
     return <PageLoader />;
+  }
+
+  if (error) {
+    return <ErrorPage error={error} />;
   }
 
   function addComment({ comment }) {
