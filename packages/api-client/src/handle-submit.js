@@ -9,14 +9,22 @@ export default function handleSubmit({
 }) {
   event?.preventDefault();
 
-  body ??= Object.fromEntries(
-    fields.map(field => [field, event.target.elements[field].value]),
-  );
+  if (fields) {
+    body = Object.fromEntries(
+      fields.map(field => [field, event.target.elements[field].value]),
+    );
+  }
 
-  body = JSON.stringify(body);
+  const options = {};
 
-  callApi(params, { body })
-    .then(res => res.json())
+  if (body) {
+    options.body = JSON.stringify(body);
+  }
+
+  callApi(params, options)
+    .then(res => {
+      return res.status === 204 ? {} : res.json();
+    })
     .then(data => {
       if (!data.errors && data.error) {
         data.errors = [data.error];

@@ -41,5 +41,8 @@ export function handleSubmit(
     params: PathParams;
     handleData: (data: unknown) => void;
     handleError: (error: string[] | null) => void;
-  } & XOR<{ body: Record<string, unknown> }, { fields: string[] }>,
+  } & XOR<
+    Partial<{ body: Record<string, unknown> }>,
+    Partial<{ fields: string[] }>
+  >,
 ): void;

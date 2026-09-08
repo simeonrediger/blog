@@ -10,6 +10,7 @@ const api = {
       path: ({ id }) => `/posts/${id}`,
       options: { method: 'PUT', headers: { ...jsonHeader } },
     },
+    delete: { path: ({ id }) => `/posts/${id}`, options: { method: 'DELETE' } },
   },
   comments: {
     create: {

@@ -10,7 +10,7 @@ import PageLoader from '@/components/PageLoader/PageLoader.jsx';
 import PostList from './PostList/PostList.jsx';
 
 export default function PostsView() {
-  const { data, loading, error } = useFetch(api.posts.getAll);
+  const { data, setData, loading, error } = useFetch(api.posts.getAll);
   const permissions = usePermissions();
 
   if (loading) {
@@ -19,6 +19,11 @@ export default function PostsView() {
 
   if (error) {
     return <ErrorPage error={error} />;
+  }
+
+  function handleDeletePost(postId) {
+    const newData = { posts: [...posts.filter(post => post.id !== postId)] };
+    setData(newData);
   }
 
   const { posts } = data;
@@ -34,7 +39,7 @@ export default function PostsView() {
       {posts.length === 0 ? (
         <p>No one has posted yet.</p>
       ) : (
-        <PostList posts={posts} />
+        <PostList posts={posts} onDeletePost={handleDeletePost} />
       )}
     </section>
   );
