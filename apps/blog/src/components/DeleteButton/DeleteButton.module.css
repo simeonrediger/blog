@@ -1,4 +1,4 @@
-.deletePostButton {
+.deleteButton {
   background-color: var(--color-button-bg-delete);
   border: none;
   color: var(--color-button-text-delete);

@@ -4,7 +4,7 @@ import usePermissions from '@/hooks/usePermissions.js';
 
 import styles from './PostListItem.module.css';
 import DateTime from '@/components/DateTime/DateTime.jsx';
-import DeletePostButton from '@/components/DeletePostButton/DeletePostButton.jsx';
+import DeletePostButton from '@/components/DeletePostButton.jsx';
 import EditPostButton from '@/components/EditPostButton.jsx';
 import PublishToggle from '@/components/PublishToggle/PublishToggle.jsx';
 
