@@ -11,8 +11,8 @@ import PostList from './PostList/PostList.jsx';
 
 export default function PostsView() {
   const api = useApi();
-  const { data, setData, loading, error } = useFetch(api.posts.getAll);
   const permissions = usePermissions();
+  const { data, setData, loading, error } = useFetch(api.posts.getAll);
 
   if (loading) {
     return <PageLoader />;

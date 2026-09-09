@@ -15,8 +15,8 @@ export default function CommentSection({
   onDeleteComment,
 }) {
   const api = useApi();
-  const [editId, setEditId] = useState(null);
   const permissions = usePermissions();
+  const [editId, setEditId] = useState(null);
   const NEW_COMMENT_ID = 'NEW_COMMENT_ID';
 
   function closeCommentForm() {
