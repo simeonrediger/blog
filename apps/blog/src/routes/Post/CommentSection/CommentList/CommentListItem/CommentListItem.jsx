@@ -5,7 +5,6 @@ export default function CommentListItem({
   authorName,
   content,
   createdAt,
-  editedAt,
 }) {
   return (
     <>
@@ -13,12 +12,6 @@ export default function CommentListItem({
         <h3>{authorName}</h3>
         <p>
           <DateTime value={createdAt} />
-          {editedAt !== createdAt && (
-            <>
-              {' '}
-              (edited <DateTime value={editedAt} />)
-            </>
-          )}
         </p>
       </div>
       <p>{content}</p>
