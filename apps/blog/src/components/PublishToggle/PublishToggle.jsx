@@ -1,8 +1,7 @@
 import { useState } from 'react';
 
-import { handleSubmit } from '@blog/api-client';
-
 import api from '@/api-client.js';
+import handleSubmit from '@/utils/handle-submit.js';
 
 import styles from './PublishToggle.module.css';
 

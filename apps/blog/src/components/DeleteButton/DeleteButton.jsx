@@ -1,4 +1,4 @@
-import { handleSubmit } from '@blog/api-client';
+import handleSubmit from '@/utils/handle-submit.js';
 
 import styles from './DeleteButton.module.css';
 

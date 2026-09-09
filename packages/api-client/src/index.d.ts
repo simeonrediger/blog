@@ -20,29 +20,3 @@ type ApiClient<Selection extends MethodNamesByResource> = {
 export default function createApiClient<
   Selection extends MethodNamesByResource,
 >(methodNamesByResource: Selection): ApiClient<Selection>;
-
-type ApiMethod = {
-  [ResourceName in keyof Api]: Api[ResourceName][keyof Api[ResourceName]];
-}[keyof Api];
-
-type PathParams = Record<string, string | number | boolean>;
-
-type XOR<A, B> =
-  (A & { [K in keyof B]?: never }) | (B & { [K in keyof A]?: never });
-
-/**
- * Handles form submission by collecting field values, calling an API method,
- * and processing the response data or errors.
- */
-export function handleSubmit(
-  options: {
-    event?: SubmitEvent;
-    callApi: ApiMethod;
-    params: PathParams;
-    handleData: (data: unknown) => void;
-    handleError: (error: string[] | null) => void;
-  } & XOR<
-    Partial<{ body: Record<string, unknown> }>,
-    Partial<{ fields: string[] }>
-  >,
-): void;
