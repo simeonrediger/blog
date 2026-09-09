@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router';
 
-import PermissionsProvider from '@/context/PermissionsProvider.jsx';
+import PermissionsProvider from '@/context/permissions/PermissionsProvider.jsx';
 
 import styles from './App.module.css';
 import Header from './Header/Header.jsx';
