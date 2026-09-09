@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import api from '@/api-client.js';
+import useApi from '@/hooks/useApi.js';
 import usePermissions from '@/hooks/usePermissions.js';
 
 import styles from './CommentSection.module.css';
@@ -14,6 +14,7 @@ export default function CommentSection({
   onEditComment,
   onDeleteComment,
 }) {
+  const api = useApi();
   const [editId, setEditId] = useState(null);
   const permissions = usePermissions();
   const NEW_COMMENT_ID = 'NEW_COMMENT_ID';

@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router';
 
-import api from '@/api-client.js';
+import useApi from '@/hooks/useApi.js';
 import useFetch from '@/hooks/useFetch.js';
 
 import styles from './Post.module.css';
@@ -11,6 +11,7 @@ import PageLoader from '@/components/PageLoader/PageLoader.jsx';
 import PostActions from '@/components/PostActions/PostActions.jsx';
 
 export default function Post() {
+  const api = useApi();
   const params = useParams();
   const navigate = useNavigate();
   const { data, setData, loading, error } = useFetch(api.posts.getById, params);

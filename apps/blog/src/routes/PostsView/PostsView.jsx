@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 
-import api from '@/api-client.js';
+import useApi from '@/hooks/useApi.js';
 import useFetch from '@/hooks/useFetch.js';
 import usePermissions from '@/hooks/usePermissions.js';
 
@@ -10,6 +10,7 @@ import PageLoader from '@/components/PageLoader/PageLoader.jsx';
 import PostList from './PostList/PostList.jsx';
 
 export default function PostsView() {
+  const api = useApi();
   const { data, setData, loading, error } = useFetch(api.posts.getAll);
   const permissions = usePermissions();
 

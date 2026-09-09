@@ -1,11 +1,12 @@
 import { useState } from 'react';
 
-import api from '@/api-client.js';
+import useApi from '@/hooks/useApi.js';
 import handleSubmit from '@/utils/handle-submit.js';
 
 import styles from './PublishToggle.module.css';
 
 export default function PublishToggle({ postId, initialPublished }) {
+  const api = useApi();
   const [published, setPublished] = useState(initialPublished);
 
   function togglePublished() {

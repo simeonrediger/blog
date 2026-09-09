@@ -1,4 +1,4 @@
-import api from '@/api-client.js';
+import useApi from '@/hooks/useApi.js';
 
 import styles from './CommentList.module.css';
 import CommentForm from '../CommentForm/CommentForm.jsx';
@@ -12,6 +12,8 @@ export default function CommentList({
   onEditComment,
   onDeleteComment,
 }) {
+  const api = useApi();
+
   return (
     <ul className={styles.commentList}>
       {comments.map(comment => (
