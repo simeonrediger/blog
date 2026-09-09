@@ -1,7 +1,7 @@
 import PermissionsContext from './PermissionsContext.js';
 
-export default function PermissionsProvider({ user, children }) {
-  const isAdmin = user?.role === 'admin';
+export default function PermissionsProvider({ userRole, children }) {
+  const isAdmin = userRole === 'admin';
 
   const permissions = {
     user: { create: isAdmin },
