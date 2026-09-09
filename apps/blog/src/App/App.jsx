@@ -6,15 +6,15 @@ import PermissionsProvider from '@/context/PermissionsProvider.jsx';
 
 export default function App() {
   return (
-    <div className={styles.app}>
-      <div className={styles.content}>
-        <PermissionsProvider>
+    <PermissionsProvider>
+      <div className={styles.app}>
+        <div className={styles.content}>
           <Header />
           <main>
             <Outlet />
           </main>
-        </PermissionsProvider>
+        </div>
       </div>
-    </div>
+    </PermissionsProvider>
   );
 }
