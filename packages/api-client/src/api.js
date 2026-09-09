@@ -6,6 +6,10 @@ const api = {
   posts: {
     getAll: { path: '/posts' },
     getById: { path: ({ id }) => `/posts/${id}` },
+    create: {
+      path: '/posts',
+      options: { method: 'POST', headers: { ...jsonHeader } },
+    },
     update: {
       path: ({ id }) => `/posts/${id}`,
       options: { method: 'PUT', headers: { ...jsonHeader } },
