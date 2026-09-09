@@ -1,11 +1,18 @@
 import styles from './CommentListItem.module.css';
+import CommentActions from '@/components/CommentActions/CommentActions.jsx';
 import DateTime from '@/components/DateTime/DateTime.jsx';
 
 export default function CommentListItem({
+  id,
   authorName,
   content,
   createdAt,
+  onEnterEdit,
 }) {
+  function handleEnterEdit() {
+    onEnterEdit(id);
+  }
+
   return (
     <>
       <div className={styles.info}>
@@ -15,6 +22,7 @@ export default function CommentListItem({
         </p>
       </div>
       <p>{content}</p>
+      <CommentActions commentId={id} onEnterEdit={handleEnterEdit} />
     </>
   );
 }

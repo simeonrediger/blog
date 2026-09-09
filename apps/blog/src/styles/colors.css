@@ -32,6 +32,8 @@ html {
 
   --color-button-bg-delete: transparent;
   --color-button-text-delete: var(--pale-light-red);
+  --color-button-bg-edit: transparent;
+  --color-button-text-edit: var(--pale-light-blue);
 
   --color-divider: var(--dark-gray-11);
   --color-modal-border: var(--dark-gray-8);

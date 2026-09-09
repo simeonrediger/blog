@@ -17,6 +17,10 @@ const api = {
       path: ({ id }) => `/posts/${id}/comments`,
       options: { method: 'POST', headers: { ...jsonHeader } },
     },
+    update: {
+      path: ({ id }) => `/comments/${id}`,
+      options: { method: 'PUT', headers: { ...jsonHeader } },
+    },
   },
 };
 

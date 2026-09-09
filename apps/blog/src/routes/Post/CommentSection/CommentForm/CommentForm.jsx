@@ -2,74 +2,72 @@ import { useState } from 'react';
 
 import { handleSubmit } from '@blog/api-client';
 
-import api from '@/api-client.js';
-
 import styles from './CommentForm.module.css';
 import ErrorList from '@/components/ErrorList/ErrorList.jsx';
 
-export default function CommentForm({ postId, onAddComment }) {
-  const [formOpen, setFormOpen] = useState(false);
+export default function CommentForm({
+  headingText,
+  callApi,
+  id,
+  handleData,
+  onCancel,
+  initialAuthorName,
+  initialContent,
+}) {
+  const [authorName, setAuthorName] = useState(initialAuthorName ?? '');
+  const [content, setContent] = useState(initialContent ?? '');
   const [errors, setErrors] = useState(null);
 
-  function toggleCommentForm() {
-    setFormOpen(!formOpen);
+  function handleAuthorNameChange(event) {
+    setAuthorName(event.target.value);
+  }
+
+  function handleContentChange(event) {
+    setContent(event.target.value);
+  }
+
+  function handleCancel() {
+    onCancel();
     setErrors(null);
   }
 
-  function handleAddComment(data) {
-    onAddComment(data);
-    setFormOpen(false);
-  }
-
   return (
-    <div className={styles.commentFormWrapper}>
-      {formOpen ? (
-        <form
-          className={styles.commentForm}
-          onSubmit={event =>
-            handleSubmit({
-              event,
-              callApi: api.comments.create,
-              params: { id: postId },
-              fields: ['authorName', 'content'],
-              handleData: handleAddComment,
-              handleError: setErrors,
-            })
-          }
-        >
-          <h3>Post a comment</h3>
-          <input
-            name="authorName"
-            aria-label="Display name"
-            placeholder="Display name"
-            required
-          />
-          <textarea
-            name="content"
-            aria-label="Message"
-            placeholder="Message"
-            className={styles.messageInput}
-            required
-          ></textarea>
-          {errors?.length > 0 && <ErrorList errors={errors} />}
-          <div className={styles.buttonRow}>
-            <button
-              className={styles.toggleCommentFormButton}
-              onClick={toggleCommentForm}
-            >
-              Cancel
-            </button>
-            <button type="submit">Submit</button>
-          </div>
-        </form>
-      ) : (
-        <button
-          className={styles.toggleCommentFormButton}
-          onClick={toggleCommentForm}
-        >
-          New comment
-        </button>
-      )}
-    </div>
+    <form
+      className={styles.commentForm}
+      onSubmit={event =>
+        handleSubmit({
+          event,
+          callApi,
+          params: { id },
+          fields: ['authorName', 'content'],
+          handleData,
+          handleError: setErrors,
+        })
+      }
+    >
+      <h3>{headingText}</h3>
+      <input
+        name="authorName"
+        aria-label="Display name"
+        placeholder="Display name"
+        value={authorName}
+        onChange={handleAuthorNameChange}
+        required
+      />
+      <textarea
+        name="content"
+        aria-label="Message"
+        placeholder="Message"
+        value={content}
+        onChange={handleContentChange}
+        className={styles.messageInput}
+        required
+      ></textarea>
+      {errors?.length > 0 && <ErrorList errors={errors} />}
+      <div className={styles.buttonRow}>
+        <button onClick={handleCancel}>Cancel</button>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
   );
 }

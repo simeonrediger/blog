@@ -1,3 +1,7 @@
 .editButton {
+  background-color: var(--color-button-bg-edit);
+  border: none;
+  color: var(--color-button-text-edit);
   line-height: normal;
+  padding: 0;
 }

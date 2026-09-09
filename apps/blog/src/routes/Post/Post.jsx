@@ -36,6 +36,20 @@ export default function Post() {
     setData(newData);
   }
 
+  function editComment({ comment }) {
+    const commentIndex = data.post.comments.findIndex(c => c.id === comment.id);
+
+    const newData = {
+      ...data,
+      post: {
+        ...data.post,
+        comments: data.post.comments.toSpliced(commentIndex, 1, comment),
+      },
+    };
+
+    setData(newData);
+  }
+
   const {
     id,
     title,
@@ -72,6 +86,7 @@ export default function Post() {
         postId={id}
         comments={comments}
         onAddComment={addComment}
+        onEditComment={editComment}
       />
     </>
   );

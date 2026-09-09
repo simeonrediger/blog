@@ -1,3 +1,7 @@
 .commentSection {
   margin-block: 1rem;
 }
+
+.newCommentWrapper {
+  margin-block: 0.25rem 0.75rem;
+}
