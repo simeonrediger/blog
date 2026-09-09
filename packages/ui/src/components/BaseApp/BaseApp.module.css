@@ -1,0 +1,19 @@
+@import '../../styles/reset.css';
+@import '../../styles/colors.css';
+@import '../../styles/base.css';
+@import '../../styles/globals.module.css';
+
+.app {
+  background-color: var(--color-app-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  padding: 1rem 2rem;
+
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  max-width: 35rem;
+  width: 100%;
+}
