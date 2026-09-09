@@ -1,5 +1,6 @@
-import App from './App.jsx';
 import { NotFoundPage, Post, PostsView } from '@blog/ui';
+
+import App from './App.jsx';
 
 const routes = [
   {

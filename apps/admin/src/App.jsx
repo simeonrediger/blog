@@ -1,7 +1,6 @@
-import api from './api-client.js';
-import { ApiProvider, PermissionsProvider } from '@blog/ui';
+import BaseApp, { ApiProvider, PermissionsProvider } from '@blog/ui';
 
-import BaseApp from '@blog/ui';
+import api from './api-client.js';
 
 export default function App() {
   return (
