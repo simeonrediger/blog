@@ -21,6 +21,10 @@ const api = {
       path: ({ id }) => `/comments/${id}`,
       options: { method: 'PUT', headers: { ...jsonHeader } },
     },
+    delete: {
+      path: ({ id }) => `/comments/${id}`,
+      options: { method: 'DELETE' },
+    },
   },
 };
 

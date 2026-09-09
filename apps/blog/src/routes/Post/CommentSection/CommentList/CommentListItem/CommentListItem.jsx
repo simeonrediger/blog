@@ -8,6 +8,7 @@ export default function CommentListItem({
   content,
   createdAt,
   onEnterEdit,
+  onDeleteComment,
 }) {
   function handleEnterEdit() {
     onEnterEdit(id);
@@ -22,7 +23,11 @@ export default function CommentListItem({
         </p>
       </div>
       <p>{content}</p>
-      <CommentActions commentId={id} onEnterEdit={handleEnterEdit} />
+      <CommentActions
+        commentId={id}
+        onEnterEdit={handleEnterEdit}
+        onDeleteComment={onDeleteComment}
+      />
     </>
   );
 }

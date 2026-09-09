@@ -10,6 +10,7 @@ export default function CommentList({
   onCancelEdit,
   onEnterEdit,
   onEditComment,
+  onDeleteComment,
 }) {
   return (
     <ul className={styles.commentList}>
@@ -26,7 +27,11 @@ export default function CommentList({
               initialContent={comment.content}
             />
           ) : (
-            <CommentListItem {...comment} onEnterEdit={onEnterEdit} />
+            <CommentListItem
+              {...comment}
+              onEnterEdit={onEnterEdit}
+              onDeleteComment={onDeleteComment}
+            />
           )}
         </li>
       ))}

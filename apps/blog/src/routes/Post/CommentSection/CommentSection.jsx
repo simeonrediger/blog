@@ -12,6 +12,7 @@ export default function CommentSection({
   comments,
   onAddComment,
   onEditComment,
+  onDeleteComment,
 }) {
   const [editId, setEditId] = useState(null);
   const permissions = usePermissions();
@@ -65,6 +66,7 @@ export default function CommentSection({
             onCancelEdit={closeCommentForm}
             onEnterEdit={handleEnterEdit}
             onEditComment={handleEditComment}
+            onDeleteComment={onDeleteComment}
           />
         )}
       </div>
