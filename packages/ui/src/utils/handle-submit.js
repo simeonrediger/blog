@@ -21,7 +21,7 @@ export default function handleSubmit({
     options.body = JSON.stringify(body);
   }
 
-  callApi(params, options)
+  callApi(params ?? options, params ? options : undefined)
     .then(res => {
       return res.status === 204 ? {} : res.json();
     })

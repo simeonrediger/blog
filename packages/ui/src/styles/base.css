@@ -30,3 +30,7 @@ textarea {
   min-height: 2.75rem;
   resize: vertical;
 }
+
+:is(input, textarea)::placeholder {
+  color: var(--color-input-placeholder);
+}

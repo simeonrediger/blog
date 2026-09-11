@@ -1,6 +1,6 @@
 import api from './api.js';
 
-type Api = typeof api;
+export type Api = typeof api;
 
 export type ApiSubset = {
   [ResourceName in keyof Api]?: Partial<Api[ResourceName]>;

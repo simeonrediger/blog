@@ -4,3 +4,5 @@ export { default as PermissionsProvider } from './context/permissions/Permission
 export { default as Post } from './components/Post/Post.jsx';
 export { default as PostsView } from './components/PostsView/PostsView.jsx';
 export { default as NotFoundPage } from './components/NotFoundPage.jsx';
+export { default as ErrorList } from './components/ErrorList/ErrorList.jsx';
+export { default as handleSubmit } from './utils/handle-submit.js';

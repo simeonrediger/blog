@@ -22,7 +22,10 @@ html {
 
   --color-input-bg: var(--dark-gray-11);
   --color-input-text: var(--white);
+  --color-input-placeholder: var(--gray);
   --color-input-text-disabled: var(--gray);
+  --color-input-checked-fg: var(--white);
+  --color-input-checked-bg: var(--pale-blue);
   --color-input-border: var(--dark-gray-8);
 
   --color-button-bg-primary: var(--pale-blue);
