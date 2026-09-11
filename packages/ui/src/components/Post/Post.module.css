@@ -2,6 +2,6 @@
   color: var(--color-text-secondary);
 }
 
-.content {
+.contentWrapper {
   margin-block: 1rem;
 }

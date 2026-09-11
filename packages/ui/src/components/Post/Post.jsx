@@ -95,7 +95,10 @@ export default function Post() {
           published={published}
           onDeletePost={handleDeletePost}
         />
-        <p className={styles.content}>{content}</p>
+        <div
+          className={styles.contentWrapper}
+          dangerouslySetInnerHTML={{ __html: content }}
+        ></div>
       </section>
       <CommentSection
         postId={id}
