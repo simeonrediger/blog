@@ -5,4 +5,7 @@ export { default as Post } from './components/Post/Post.jsx';
 export { default as PostsView } from './components/PostsView/PostsView.jsx';
 export { default as NotFoundPage } from './components/NotFoundPage.jsx';
 export { default as ErrorList } from './components/ErrorList/ErrorList.jsx';
+export { default as ErrorPage } from './components/ErrorPage/ErrorPage.jsx';
+export { default as PageLoader } from './components/PageLoader/PageLoader.jsx';
+export { default as useFetch } from './hooks/useFetch.js';
 export { default as handleSubmit } from './utils/handle-submit.js';

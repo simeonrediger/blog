@@ -5,7 +5,9 @@ import { handleSubmit, ErrorList } from '@blog/ui';
 import styles from './PostForm.module.css';
 import Editor from '../Editor/Editor.jsx';
 
-export default function PostEditor({ callApi, handleData }) {
+export default function PostEditor({ post, callApi, handleData }) {
+  const [title, setTitle] = useState(post?.title ?? '');
+  const [published, setPublished] = useState(post?.published ?? false);
   const [errors, setErrors] = useState(null);
   const editorRef = useRef(null);
 
@@ -14,13 +16,12 @@ export default function PostEditor({ callApi, handleData }) {
   }
 
   function handleSubmitPost(event) {
-    const title = event.target.elements.title.value;
     const content = editorRef.current.getContent();
-    const published = event.target.elements.published.checked;
 
     handleSubmit({
       event,
       callApi,
+      params: post ? { id: post.id } : undefined,
       body: { title, content, published },
       handleData,
       handleError: setErrors,
@@ -31,18 +32,31 @@ export default function PostEditor({ callApi, handleData }) {
     <section>
       <form onSubmit={handleSubmitPost}>
         <h2 className="pageTitle">New post</h2>
-        <input name="title" aria-label="Title" placeholder="Title" required />
+        <input
+          name="title"
+          aria-label="Title"
+          placeholder="Title"
+          value={title}
+          onChange={event => setTitle(event.target.value)}
+          required
+        />
         <div className={styles.editorWrapper}>
           <Editor
             name="content"
             placeholder="Compose your content here"
+            initialContent={post?.content}
             className={styles.editor}
             onInit={handleEditorInit}
             required
           />
         </div>
         <label className={styles.checkbox}>
-          <input name="published" type="checkbox" />
+          <input
+            name="published"
+            type="checkbox"
+            checked={published}
+            onChange={event => setPublished(event.target.checked)}
+          />
           <span>Publish</span>
         </label>
         {errors?.length > 0 && <ErrorList errors={errors} />}

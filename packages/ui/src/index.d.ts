@@ -21,11 +21,20 @@ export function NotFoundPage(): React.JSX.Element;
 
 export function ErrorList(props: { errors: string[] }): React.JSX.Element;
 
+export function ErrorPage(props: { error: Error }): React.JSX.Element;
+
+export function PageLoader(): React.JSX.Element;
+
 type ApiMethod = {
   [ResourceName in keyof Api]: Api[ResourceName][keyof Api[ResourceName]];
 }[keyof Api];
 
 type PathParams = Record<string, string | number | boolean>;
+
+export function useFetch(
+  fetchFunc: ApiMethod,
+  options: { params: PathParams; enabled: boolean },
+);
 
 type XOR<A, B> =
   (A & { [K in keyof B]?: never }) | (B & { [K in keyof A]?: never });
