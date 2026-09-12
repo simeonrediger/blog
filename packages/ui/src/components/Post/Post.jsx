@@ -9,6 +9,7 @@ import DateTime from '../DateTime/DateTime.jsx';
 import ErrorPage from '../ErrorPage/ErrorPage.jsx';
 import PageLoader from '../PageLoader/PageLoader.jsx';
 import PostActions from '../PostActions/PostActions.jsx';
+import PostContent from '../PostContent/PostContent.jsx';
 
 export default function Post() {
   const api = useApi();
@@ -95,10 +96,7 @@ export default function Post() {
           published={published}
           onDeletePost={handleDeletePost}
         />
-        <div
-          className={styles.contentWrapper}
-          dangerouslySetInnerHTML={{ __html: content }}
-        ></div>
+        <PostContent content={content} />
       </section>
       <CommentSection
         postId={id}
