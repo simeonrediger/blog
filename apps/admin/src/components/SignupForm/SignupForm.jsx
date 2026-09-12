@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
 
 import { handleSubmit, ErrorList } from '@blog/ui';
 
 import api from '../../api-client.js';
+import { useAuth } from '@blog/ui';
 
 import styles from './SignupForm.module.css';
 
 export default function SignupForm() {
-  const navigate = useNavigate();
+  const { logIn } = useAuth();
   const [errors, setErrors] = useState(null);
 
   function handleSubmitSignup(event) {
@@ -16,14 +16,9 @@ export default function SignupForm() {
       event,
       callApi: api.users.create,
       fields: ['username', 'password', 'passwordConfirmation', 'adminPassword'],
-      handleData,
+      handleData: logIn,
       handleError: setErrors,
     });
-  }
-
-  function handleData({ token }) {
-    localStorage.setItem('accessToken', token);
-    navigate('/');
   }
 
   return (
