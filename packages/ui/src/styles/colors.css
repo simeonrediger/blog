@@ -19,6 +19,8 @@ html {
   --color-text: var(--white);
   --color-text-secondary: var(--light-gray-6);
   --color-link: var(--pale-light-blue);
+  --color-code-bg: var(--dark-gray-11);
+  --color-code-text: var(--white);
 
   --color-input-bg: var(--dark-gray-11);
   --color-input-text: var(--white);
