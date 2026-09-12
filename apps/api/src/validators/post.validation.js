@@ -1,5 +1,7 @@
 import { param, body } from 'express-validator';
 
+import sanitizeHtml from '@blog/html-sanitizer';
+
 import { validateAtLeastOneOf } from './common.validation.js';
 
 const requirements = {
@@ -50,7 +52,9 @@ function validateContent() {
     .isLength({ max: requirements.content.maxLength })
     .withMessage(
       `Content must not exceed ${requirements.content.maxLength} characters`,
-    );
+    )
+    .bail()
+    .customSanitizer(sanitizeHtml);
 }
 
 function validatePublished() {

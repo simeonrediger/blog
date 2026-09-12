@@ -11,6 +11,7 @@
     "db:ui": "prisma studio"
   },
   "dependencies": {
+    "@blog/html-sanitizer": "*",
     "@prisma/adapter-pg": "^7.10.0",
     "@prisma/client": "^7.10.0",
     "bcryptjs": "^3.0.3",
