@@ -31,7 +31,7 @@ export default function PostEditor({ post, callApi, handleData }) {
   return (
     <section>
       <form onSubmit={handleSubmitPost}>
-        <h2 className="pageTitle">New post</h2>
+        <h2 className="pageTitle">{post ? 'Edit' : 'New'} post</h2>
         <input
           name="title"
           aria-label="Title"
