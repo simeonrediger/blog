@@ -2,11 +2,13 @@
 export { default } from './components/BaseApp/BaseApp.jsx';
 
 // Utilities
+export { default as useAuth } from './hooks/useAuth.js';
 export { default as useFetch } from './hooks/useFetch.js';
 export { default as handleSubmit } from './utils/handle-submit.js';
 
 // Components
 export { default as ApiProvider } from './context/api/ApiProvider.jsx';
+export { default as AuthProvider } from './context/auth/AuthProvider.jsx';
 export { default as ErrorList } from './components/ErrorList/ErrorList.jsx';
 export { default as ErrorPage } from './components/ErrorPage/ErrorPage.jsx';
 export { default as PermissionsProvider } from './context/permissions/PermissionsProvider.jsx';

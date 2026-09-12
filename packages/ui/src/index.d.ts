@@ -8,6 +8,10 @@ export function ApiProvider(props: {
   children?: ReactNode;
 }): React.JSX.Element;
 
+export function AuthProvider(props: {
+  children?: ReactNode;
+}): React.JSX.Element;
+
 export function PermissionsProvider(props: {
   userRole?: string;
   children?: ReactNode;
@@ -24,6 +28,8 @@ export function ErrorList(props: { errors: string[] }): React.JSX.Element;
 export function ErrorPage(props: { error: Error }): React.JSX.Element;
 
 export function PageLoader(): React.JSX.Element;
+
+export function useAuth(): { id: number; role?: string }?;
 
 type ApiMethod = {
   [ResourceName in keyof Api]: Api[ResourceName][keyof Api[ResourceName]];
