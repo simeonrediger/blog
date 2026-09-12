@@ -6,37 +6,34 @@ import AuthContext from './AuthContext.js';
 
 export default function AuthProvider({ children }) {
   const navigate = useNavigate();
-  const [accessToken, setAccessToken] = useState(
-    localStorage.getItem('accessToken'),
-  );
+  const [token, setToken] = useState(localStorage.getItem('accessToken'));
   let claims;
 
-  if (accessToken) {
+  if (token) {
     try {
-      claims = jwtDecode(accessToken);
+      claims = jwtDecode(token);
     } catch (error) {
       localStorage.removeItem('accessToken');
-      setAccessToken(null);
+      setToken(null);
     }
 
     if (claims?.exp && new Date(claims.exp) * 1000 <= Date.now()) {
       localStorage.removeItem('accessToken');
-      setAccessToken(null);
+      setToken(null);
     }
   }
 
   function logIn({ token }) {
     localStorage.setItem('accessToken', token);
-    setAccessToken(token);
+    setToken(token);
     navigate('/');
   }
 
   function logOut() {
-    setAccessToken(null);
+    setToken(null);
   }
 
-  const user = accessToken ? { id: claims.sub, role: claims.role } : null;
-  const token = accessToken;
+  const user = token ? { id: claims.sub, role: claims.role } : null;
 
   return (
     <AuthContext.Provider value={{ token, user, logIn, logOut }}>
