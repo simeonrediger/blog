@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { applyAuth } from '../auth/access-token.js';
+
 export default function useFetch(fetchFunc, params) {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
@@ -11,9 +13,11 @@ export default function useFetch(fetchFunc, params) {
   }
 
   params = paramsRef.current;
+  const options = {};
+  applyAuth(options);
 
   useEffect(() => {
-    fetchFunc(params)
+    fetchFunc(params ?? options, params ? options : undefined)
       .then(handleResponse)
       .then(setData)
       .catch(setError)

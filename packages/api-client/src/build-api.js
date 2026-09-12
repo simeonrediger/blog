@@ -6,14 +6,35 @@ export default function buildApi(apiSchema) {
   }
 }
 
-function createApiMethod(path, baseOptions) {
+function createApiMethod(path, baseOptions = {}) {
   return typeof path === 'function'
     ? (params, options = {}) => {
-        Object.assign(options, baseOptions);
+        deepMerge(options, baseOptions);
         return fetch(`${API_ORIGIN}${path(params)}`, options);
       }
     : (options = {}) => {
-        Object.assign(options, baseOptions);
+        deepMerge(options, baseOptions);
         return fetch(`${API_ORIGIN}${path}`, options);
       };
+}
+
+function deepMerge(target, source) {
+  for (const key of Object.keys(source)) {
+    const value = source[key];
+
+    if (value !== null && typeof value === 'object' && !Array.isArray(value)) {
+      const base =
+        target[key] !== null &&
+        typeof target[key] === 'object' &&
+        !Array.isArray(target[key])
+          ? target[key]
+          : {};
+
+      target[key] = deepMerge(base, value);
+    } else {
+      target[key] = value;
+    }
+  }
+
+  return target;
 }
