@@ -1,3 +1,15 @@
 .contentWrapper {
   margin-block: 1rem;
 }
+
+.contentWrapper ol {
+  list-style: inside decimal;
+  margin-block: 0.375rem;
+  padding-inline-start: 0.375rem;
+}
+
+.contentWrapper ul {
+  list-style: inside disc;
+  margin-block: 0.375rem;
+  padding-inline-start: 0.375rem;
+}
