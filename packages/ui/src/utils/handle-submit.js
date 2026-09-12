@@ -1,9 +1,10 @@
-import { applyAuth } from '../auth/access-token.js';
+import applyAuth from './apply-auth.js';
 
 export default function handleSubmit({
   event,
   callApi,
   params,
+  token,
   body,
   fields,
   handleData,
@@ -18,7 +19,10 @@ export default function handleSubmit({
   }
 
   const options = {};
-  applyAuth(options);
+
+  if (token) {
+    applyAuth(options, token);
+  }
 
   if (body) {
     options.body = JSON.stringify(body);

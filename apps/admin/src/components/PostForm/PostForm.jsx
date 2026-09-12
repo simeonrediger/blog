@@ -1,11 +1,12 @@
 import { useRef, useState } from 'react';
 
-import { handleSubmit, ErrorList } from '@blog/ui';
+import { handleSubmit, useAuth, ErrorList } from '@blog/ui';
 
 import styles from './PostForm.module.css';
 import Editor from '../Editor/Editor.jsx';
 
 export default function PostEditor({ post, callApi, handleData }) {
+  const { token } = useAuth();
   const [title, setTitle] = useState(post?.title ?? '');
   const [published, setPublished] = useState(post?.published ?? false);
   const [errors, setErrors] = useState(null);
@@ -22,6 +23,7 @@ export default function PostEditor({ post, callApi, handleData }) {
       event,
       callApi,
       params: post ? { id: post.id } : undefined,
+      token,
       body: { title, content, published },
       handleData,
       handleError: setErrors,

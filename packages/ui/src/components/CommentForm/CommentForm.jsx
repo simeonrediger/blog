@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import handleSubmit from '../../utils/handle-submit.js';
+import useAuth from '../../hooks/useAuth.js';
 
 import styles from './CommentForm.module.css';
 import ErrorList from '../ErrorList/ErrorList.jsx';
@@ -14,6 +15,7 @@ export default function CommentForm({
   initialAuthorName,
   initialContent,
 }) {
+  const { token } = useAuth();
   const [authorName, setAuthorName] = useState(initialAuthorName ?? '');
   const [content, setContent] = useState(initialContent ?? '');
   const [errors, setErrors] = useState(null);
@@ -39,6 +41,7 @@ export default function CommentForm({
           event,
           callApi,
           params: { id },
+          token,
           fields: ['authorName', 'content'],
           handleData,
           handleError: setErrors,

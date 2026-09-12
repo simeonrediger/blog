@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { applyAuth } from '../auth/access-token.js';
+import applyAuth from '../utils/apply-auth.js';
+import useAuth from '../hooks/useAuth.js';
 
 export default function useFetch(fetchFunc, params) {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const paramsRef = useRef(params);
+  const { token } = useAuth();
 
   if (params && !shallowEqual(params, paramsRef.current)) {
     paramsRef.current = params;
@@ -14,7 +16,10 @@ export default function useFetch(fetchFunc, params) {
 
   params = paramsRef.current;
   const options = {};
-  applyAuth(options);
+
+  if (token) {
+    applyAuth(options, token);
+  }
 
   useEffect(() => {
     fetchFunc(params ?? options, params ? options : undefined)

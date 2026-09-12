@@ -2,25 +2,25 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { jwtDecode } from 'jwt-decode';
 
-import { getAccessToken, removeAccessToken } from '../../auth/access-token.js';
-
 import AuthContext from './AuthContext.js';
 
 export default function AuthProvider({ children }) {
   const navigate = useNavigate();
-  const [accessToken, setAccessToken] = useState(getAccessToken());
+  const [accessToken, setAccessToken] = useState(
+    localStorage.getItem('accessToken'),
+  );
   let claims;
 
   if (accessToken) {
     try {
       claims = jwtDecode(accessToken);
     } catch (error) {
-      removeAccessToken();
+      localStorage.removeItem('accessToken');
       setAccessToken(null);
     }
 
     if (claims?.exp && new Date(claims.exp) * 1000 <= Date.now()) {
-      removeAccessToken();
+      localStorage.removeItem('accessToken');
       setAccessToken(null);
     }
   }
@@ -36,8 +36,10 @@ export default function AuthProvider({ children }) {
   }
 
   const user = accessToken ? { id: claims.sub, role: claims.role } : null;
+  const token = accessToken;
+
   return (
-    <AuthContext.Provider value={{ user, logIn, logOut }}>
+    <AuthContext.Provider value={{ token, user, logIn, logOut }}>
       {children}
     </AuthContext.Provider>
   );
