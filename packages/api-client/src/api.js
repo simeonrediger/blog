@@ -3,6 +3,12 @@ import buildApi from './build-api.js';
 const jsonHeader = { 'Content-Type': 'application/json' };
 
 const api = {
+  tokens: {
+    create: {
+      path: '/tokens',
+      options: { method: 'POST', headers: { ...jsonHeader } },
+    },
+  },
   users: {
     create: {
       path: '/users',
@@ -38,6 +44,7 @@ const api = {
   },
 };
 
+buildApi(api.tokens);
 buildApi(api.users);
 buildApi(api.posts);
 buildApi(api.comments);

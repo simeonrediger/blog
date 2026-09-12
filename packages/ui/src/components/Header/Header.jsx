@@ -30,7 +30,7 @@ export default function Header() {
                   <NavLink to="/register">Register</NavLink>
                 </li>
               )}
-              {permissions.auth.logIn && (
+              {permissions.token.create && (
                 <li>
                   <NavLink to="/log-in">Log in</NavLink>
                 </li>

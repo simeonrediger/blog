@@ -1,0 +1,14 @@
+.fields {
+  margin-block: 1rem;
+
+  display: grid;
+  grid-template-columns: max-content min-content;
+  justify-items: end;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.loginButton {
+  background-color: var(--color-button-bg-primary);
+  margin-block: 1rem;
+}
