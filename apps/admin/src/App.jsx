@@ -10,7 +10,7 @@ export default function App() {
   return (
     <ApiProvider api={api}>
       <AuthProvider>
-        <PermissionsProvider>
+        <PermissionsProvider canAuth={true}>
           <BaseApp />
         </PermissionsProvider>
       </AuthProvider>
