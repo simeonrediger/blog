@@ -24,11 +24,18 @@ export default function Header() {
               </button>
             </li>
           ) : (
-            permissions.user.create && (
-              <li>
-                <NavLink to="/register">Register</NavLink>
-              </li>
-            )
+            <>
+              {permissions.user.create && (
+                <li>
+                  <NavLink to="/register">Register</NavLink>
+                </li>
+              )}
+              {permissions.auth.logIn && (
+                <li>
+                  <NavLink to="/log-in">Log in</NavLink>
+                </li>
+              )}
+            </>
           )}
         </ul>
       </nav>
