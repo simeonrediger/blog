@@ -22,5 +22,6 @@ export async function validateCredentials({ username, password }) {
     return null;
   }
 
+  delete user.passwordHash;
   return user;
 }
