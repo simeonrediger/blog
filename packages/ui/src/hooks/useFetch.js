@@ -1,9 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function useFetch(fetchFunc, params) {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const paramsRef = useRef(params);
+
+  if (params && !shallowEqual(params, paramsRef.current)) {
+    paramsRef.current = params;
+  }
+
+  params = paramsRef.current;
 
   useEffect(() => {
     fetchFunc(params)
@@ -28,4 +35,15 @@ function handleResponse(res) {
   }
 
   return res.json();
+}
+
+function shallowEqual(object1, object2) {
+  const keys1 = Object.keys(object1);
+  const keys2 = Object.keys(object2);
+
+  if (keys1.length !== keys2.length) {
+    return false;
+  }
+
+  return keys1.every(key => object1[key] === object2[key]);
 }
