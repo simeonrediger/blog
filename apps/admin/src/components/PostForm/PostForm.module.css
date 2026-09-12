@@ -2,6 +2,18 @@
   margin-block: 1rem;
 }
 
+.editorWrapper ol {
+  list-style: inside decimal;
+  margin-block: 0.375rem;
+  padding-inline-start: 0.375rem;
+}
+
+.editorWrapper ul {
+  list-style: inside disc;
+  margin-block: 0.375rem;
+  padding-inline-start: 0.375rem;
+}
+
 .checkbox {
   cursor: pointer;
   font:
