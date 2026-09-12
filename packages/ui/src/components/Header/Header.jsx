@@ -1,10 +1,12 @@
 import { NavLink } from 'react-router';
 
+import useAuth from '../../hooks/useAuth.js';
 import usePermissions from '../../hooks/usePermissions.js';
 
 import styles from './Header.module.css';
 
 export default function Header() {
+  const { user, logOut } = useAuth();
   const permissions = usePermissions();
 
   return (
@@ -15,10 +17,18 @@ export default function Header() {
           <li>
             <NavLink to="/">Home</NavLink>
           </li>
-          {permissions.user.create && (
+          {user ? (
             <li>
-              <NavLink to="/register">Register</NavLink>
+              <button onClick={logOut} className="link">
+                Log out
+              </button>
             </li>
+          ) : (
+            permissions.user.create && (
+              <li>
+                <NavLink to="/register">Register</NavLink>
+              </li>
+            )
           )}
         </ul>
       </nav>

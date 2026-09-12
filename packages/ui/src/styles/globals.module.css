@@ -11,3 +11,10 @@
   color: var(--color-button-text);
   padding: 0.25rem 0.5rem;
 }
+
+:global(.link) {
+  background-color: transparent;
+  border: none;
+  color: var(--color-link);
+  padding: 0;
+}

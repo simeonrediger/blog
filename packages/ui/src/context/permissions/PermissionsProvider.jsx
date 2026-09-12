@@ -3,7 +3,7 @@ import useAuth from '../../hooks/useAuth.js';
 import PermissionsContext from './PermissionsContext.js';
 
 export default function PermissionsProvider({ canAuth, children }) {
-  const user = useAuth();
+  const { user } = useAuth();
   const isAdmin = user?.role === 'admin';
 
   const permissions = {
