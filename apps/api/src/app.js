@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 
 import authRouter from './routes/auth.router.js';
 import commentRouter from './routes/comment.router.js';
@@ -8,6 +9,23 @@ import * as auth from './middleware/auth.middleware.js';
 import * as errorController from './controllers/error.controller.js';
 
 const app = express();
+
+const allowedOrigins = [
+  process.env.ADMIN_ORIGIN,
+  process.env.BLOG_ORIGIN,
+].filter(Boolean);
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Origin not allowed by CORS'));
+      }
+    },
+  }),
+);
 
 app.use(express.json());
 app.use(errorController.handleInvalidJson);
