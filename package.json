@@ -1,5 +1,5 @@
 {
-  "name": "blog",
+  "name": "blog-root",
   "private": true,
   "workspaces": [
     "apps/*",
